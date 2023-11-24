@@ -17,6 +17,13 @@ public class ControllerMember {
         db.registerNewMember(name, address, birthday, memberID, email, membershipType, isActive);
     }
 
+    public ArrayList<CompetitiveSwimmer> juniorTeam() {
+        return db.getJuniorTeam();
+    }
+    public ArrayList<CompetitiveSwimmer> seniorTeam() {
+        return db.getSeniorTeam();
+    }
+
     public void editMember(Member memberToEdit){
         db.editMember(memberToEdit);
     }

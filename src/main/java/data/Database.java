@@ -1,5 +1,6 @@
 package data;
 
+import member.CompetitiveSwimmer;
 import member.Member;
 
 import java.time.LocalDate;

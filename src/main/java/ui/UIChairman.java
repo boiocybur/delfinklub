@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import member.Member;
+import member.CompetitiveSwimmer;
 import member.ControllerMember;
 
 public class UIChairman {
@@ -162,6 +163,11 @@ public class UIChairman {
         System.out.println(controllerMember.getAge());
         System.out.println(member);
 
+    }
+    private void printSwimmers(ArrayList<CompetitiveSwimmer> seniorTeam) {
+        for (CompetitiveSwimmer swimmer : seniorTeam) {
+            printMemberDetails(swimmer);
+        }
     }
 
     public void showMember() {
