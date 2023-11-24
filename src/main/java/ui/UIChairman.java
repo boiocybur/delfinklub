@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 import member.Member;
@@ -122,8 +123,8 @@ public class UIChairman {
                 System.out.print("Enter the new age (press Enter to keep the current value): ");
                 String newAgeInput = scanner.nextLine();
                 if (!newAgeInput.isEmpty()) {
-                    int newAge = Integer.parseInt(newAgeInput);
-                    memberToEdit.setAge(newAge);
+                    LocalDate newAge = LocalDate.parse(newAgeInput);
+                    memberToEdit.setBirthday(newAge);
                 }
 
                 System.out.print("Enter the new member ID (press Enter to keep the current ID): ");
