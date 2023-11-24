@@ -10,51 +10,67 @@ public class UIChairman {
     Scanner scanner = new Scanner(System.in);
     private ControllerMember controllerMember;
 
-    public UIChairman(){
+    public UIChairman() {
         this.controllerMember = new ControllerMember();
     }
 
-    public void registerMember (){
+    public void registerMember() {
         System.out.print("Name of member: ");
         String name = scanner.nextLine();
         System.out.print("Address of member: ");
         String address = scanner.nextLine();
-        System.out.println("Age of member: ");
-        int age = scanner.nextInt();
-        System.out.println("ID of member: ");
-        int memberID = scanner.nextInt();
-        System.out.println("Email of member: ");
+        LocalDate birthday = null;
+        int memberID = 0;
+        while (birthday == null) {
+            System.out.print("Birthday of member (yyyy-MM-dd): ");
+            String birthdayStr = scanner.nextLine();
+            try {
+                birthday = LocalDate.parse(birthdayStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                Random random = new Random();
+                int r = random.nextInt(100);
+                memberID = birthday.getYear() * 10000 + birthday.getMonthValue() * 100 + birthday.getDayOfMonth() + r;
+            } catch (DateTimeParseException e) {
+                System.out.println("Ugyldigt datoformat. Prøv igen.");
+
+            }
+        }
+        System.out.print("Email of member: ");
+        scanner.nextLine();
         String email = scanner.nextLine();
-        System.out.println("Membership type of member: ");
         boolean membershipType = false;
         boolean isActive = false;
         boolean validInput = false;
 
         while (!validInput) {
-            System.out.print("Is member casual or competitive): ");
-            String membershipInput = scanner.nextLine().trim().toLowerCase();
-            if (membershipInput.equals("motionist")) {
-                membershipType = true;
-                break;
-            } else if (membershipInput.equals("konkurrencesvømmer")) {
-                membershipType = false;
-                break;
-            } else {
-                System.out.println("Invalid input. Please enter 'yes' or 'no'.");
-            }
-            System.out.println("Would you like to be an active member?");
-            String activeInput = scanner.nextLine().trim().toLowerCase();
-            if (activeInput.equals("yes")) {
+            System.out.println("Is member active or passive?");
+            System.out.println("Press 1 for active. Press 2 for passive");
+            int activeInput = scanner.nextInt();
+            if (activeInput == 1) {
                 isActive = true;
                 break;
-            } else if (activeInput.equals("no")) {
+            } else if (activeInput == 2) {
                 isActive = false;
                 break;
             } else {
-                System.out.println("Invalid input. Please enter 'yes' or 'no'.");
+                System.out.println("Invalid input. Please enter '1' or '2'.");
             }
+            System.out.println("Is member competitive?");
+            System.out.println("press 1 for competitive, press 2 for non competitive");
+            int membershipInput = scanner.nextInt();
+            if (membershipInput == 1) {
+                membershipType = true;
+
+            } else if (membershipInput == 2) {
+                membershipType = false;
+                break;
+            } else {
+                System.out.println("Invalid input. Please enter '1' or '2'.");
+            }
+            scanner.nextLine();
+
+
         }
-        controllerMember.registerMember(name, address, age, memberID, email, membershipType, isActive);
+        controllerMember.registerMember(name, address, birthday, memberID, email, membershipType, isActive);
     }
 
     public void editMember() {
@@ -62,7 +78,7 @@ public class UIChairman {
 
         ArrayList<Member> matchingMembers = new ArrayList<>();
         for (Member members : controllerMember.getAllMembers()) {
-            if (members.getName().toLowerCase().contains(partialSearchCriteria.toLowerCase())){
+            if (members.getName().toLowerCase().contains(partialSearchCriteria.toLowerCase())) {
                 matchingMembers.add(members);
             }
         }
@@ -93,80 +109,93 @@ public class UIChairman {
                     memberToEdit.setName(newName);
                 }
 
-                System.out.print("Enter the new alias (press Enter to keep the current alias): ");
+                System.out.print("Enter the new address (press Enter to keep the current address): ");
                 String newAddress = scanner.nextLine();
                 if (!newAddress.trim().isEmpty()) {
                     memberToEdit.setAddress(newAddress);
                 }
 
-                System.out.print("Is the superhero human? (ja/nej) (press Enter to keep the current value): ");
+                System.out.print("Enter the new age (press Enter to keep the current value): ");
                 String newAgeInput = scanner.nextLine();
                 if (!newAgeInput.isEmpty()) {
                     int newAge = Integer.parseInt(newAgeInput);
                     memberToEdit.setAge(newAge);
                 }
 
-                System.out.print("Enter the new creation year (press Enter to keep the current year): ");
+                System.out.print("Enter the new member ID (press Enter to keep the current ID): ");
                 String memberID = scanner.nextLine();
                 if (!memberID.isEmpty()) {
                     int newID = Integer.parseInt(memberID);
                     memberToEdit.setMemberID(newID);
                 }
 
-                System.out.print("Enter the new superpower (press Enter to keep the current superpower): ");
+                System.out.print("Enter the new email type (press Enter to keep the current email): ");
                 String newEmail = scanner.nextLine();
                 if (!newEmail.trim().isEmpty()) {
                     memberToEdit.setEmail(newEmail);
                 }
 
-                System.out.print("Enter the new strength [0-100] (press Enter to keep the current strength): ");
+                System.out.print("Enter the new membership type (press Enter to keep the current membership): ");
                 String newMembershipType = scanner.nextLine().trim().toLowerCase();
                 if (!newMembershipType.isEmpty()) {
                     boolean newMembership = newMembershipType.equals("ja");
-                    memberToEdit.setMembershipType(newMembership);
+                    memberToEdit.setCompetitiveSwimmer(newMembership);
                 }
 
-                System.out.print("Enter the new strength [0-100] (press Enter to keep the current strength): ");
+                System.out.print("Enter the new activity level (press Enter to keep the current activity level): ");
                 String newActive = scanner.nextLine().trim().toLowerCase();
                 if (!newActive.isEmpty()) {
                     boolean newisActive = newActive.equals("ja");
-                    memberToEdit.setMembershipType(newisActive);
+                    memberToEdit.setCompetitiveSwimmer(newisActive);
                 }
 
                 controllerMember.editMember(memberToEdit);
             }
         }
     }
-    private void printMemberDetails(Member member){
-        System.out.println("Name: " + member.getName());
-        System.out.println("Address: " + member.getAddress());
-        System.out.println("Age: " + (member.getAge()));
-        System.out.println("Member ID: " + member.getMemberID());
-        System.out.println("Membership type: " + member.isMembershipType());
-        System.out.println("Active: " + member.isActive());
-        System.out.println("----------------------");
+
+    private void printMemberDetails(Member member) {
+        controllerMember.IDCreation();
+        System.out.println(controllerMember.getAge());
+        System.out.println(member);
+
     }
 
-    public void chairmanMenu(){
-        while (true){
-            System.out.println("""
-                    Velkommen til menuen for formanden.
-                    1. Opret medlem
-                    2. Rediger medlem
-                    3. Slet medlem
-                    """);
-            try {
-                int choice = scanner.nextInt();
-                scanner.nextLine(); //bugfix
+    public void showMember() {
+        ArrayList<Member> medlem = controllerMember.getAllMembers();
 
-                switch (choice) {
-                    case 1 -> registerMember();
-                    case 2 -> editMember();
-                    //case 3 -> removeMember();
+        for (Member member : medlem) {
+            printMemberDetails(member);
+
+        }
+
+    }
+        public void chairmanMenu() {
+            while (true) {
+                System.out.println("""
+                        Velkommen til menuen for formanden.
+                        1. Vis medlem
+                        2. Opret medlem
+                        3. Rediger medlem
+                        4. Slet medlem
+                        """);
+                try {
+                    int choice = scanner.nextInt();
+                    scanner.nextLine(); //bugfix
+
+                    switch (choice) {
+                        case 1 -> showMember();
+                        case 2 -> registerMember();
+                        case 3 -> editMember();
+                        //case 4 -> removeMember();
+                        case 5 -> controllerMember.IDCreation();
+                        case 6 -> printSwimmers(controllerMember.juniorTeam());
+                        case 7 -> printSwimmers(controllerMember.seniorTeam());
+                    }
+                } catch (Exception e) {
+                    System.out.println("Der opstod en fejl: " + e.getMessage());
+                    scanner.nextLine();
                 }
-            } catch (Exception e) {
-                throw new RuntimeException(e);
             }
         }
     }
-}
