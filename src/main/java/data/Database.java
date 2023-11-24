@@ -41,6 +41,26 @@ public class Database {
         return members;
     }
 
+    public ArrayList<CompetitiveSwimmer> getJuniorTeam() {
+        ArrayList<CompetitiveSwimmer> juniorTeam = new ArrayList<>();
+        for (Member member : members) {
+            if (member.isCompetitiveSwimmer() && member.isJunior()) {
+                juniorTeam.add((CompetitiveSwimmer) member);
+            }
+        }
+        return juniorTeam;
+    }
+
+    public ArrayList<CompetitiveSwimmer> getSeniorTeam() {
+        ArrayList<CompetitiveSwimmer> seniorTeam = new ArrayList<>();
+        for (Member member : members) {
+            if (member.isCompetitiveSwimmer() && member.isSenior()) {
+                seniorTeam.add((CompetitiveSwimmer) member);
+            }
+        }
+        return seniorTeam;
+    }
+
     public int getAge() {
         LocalDate localDate = LocalDate.now();
         for (Member member : members) {
