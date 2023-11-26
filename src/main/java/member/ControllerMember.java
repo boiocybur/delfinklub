@@ -13,7 +13,7 @@ public class ControllerMember {
     }
 
     public void registerMember(String name, String address, LocalDate birthday, int memberID, String email, boolean membershipType, boolean isActive) {
-        Member newMember = new CompetitiveSwimmer("Grete Bjerre", "Nyborggade 1tv", birthday, 192302, "GreteBjerre@gmail.com", true, true, "Michael", "Crawl", true);
+        Member newMember = new CompetitiveSwimmer("Grete Bjerre", "Nyborggade 1tv", birthday, 192302, "GreteBjerre@gmail.com", true, "Michael", "Crawl");
         db.registerNewMember(name, address, birthday, memberID, email, membershipType, isActive);
     }
 
