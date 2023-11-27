@@ -165,8 +165,8 @@ public class UIChairman {
         System.out.println(member);
 
     }
-    private void printSwimmers(ArrayList<CompetitiveSwimmer> seniorTeam) {
-        for (CompetitiveSwimmer swimmer : seniorTeam) {
+    private void printSwimmers(ArrayList<CompetitiveSwimmer> Team) {
+        for (CompetitiveSwimmer swimmer : Team) {
             printMemberDetails(swimmer);
         }
     }
@@ -188,6 +188,9 @@ public class UIChairman {
                         2. Opret medlem
                         3. Rediger medlem
                         4. Slet medlem
+                        5. IDCreation
+                        6. Vis konkurrencesvømmere junior division
+                        7. Vis konkurrencesvømmere Senior division
                         """);
                 try {
                     int choice = scanner.nextInt();

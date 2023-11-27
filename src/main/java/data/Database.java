@@ -15,7 +15,9 @@ public class Database {
     public Database() {
         this.members = new ArrayList<>();
         LocalDate birthday = LocalDate.of(1987, 12, 3);
-        members.add(new CompetitiveSwimmer("Grete Bjerre", "Nyborggade 1tv", birthday, 198712377, "GreteBjerre@gmail.com", false, true, "Michael", "Crawl", true));
+        members.add(new CompetitiveSwimmer("Grete Bjerre", "Nyborggade 1tv", birthday, 198712377, "GreteBjerre@gmail.com", true, "Michael", "Crawl"));
+        members.add(new CompetitiveSwimmer("Hello World", "Fubarveh 42", LocalDate.of(2010, 10, 26), 261082126, "hello@gmail.com", true, "Michael", "Butterfly"));
+        members.add(new Member("Hej Bror", "Villa lort 1337", LocalDate.of(1994, 12, 29), 123451234, "fubar@gmail.com", false, true));
     }
 
 
@@ -26,7 +28,7 @@ public class Database {
     }
 
     public void registerNewCompetitiveSwimmer(String name, String address, LocalDate birthday, int memberID, String email, boolean membershipType, boolean isActive, String coach, String discipline, boolean division) {
-        members.add(new CompetitiveSwimmer(name, address, birthday, memberID, email, membershipType, isActive, coach, discipline, division));
+        members.add(new CompetitiveSwimmer(name, address, birthday, memberID, email, isActive, coach, discipline));
     }
 
     public void editMember(Member memberToEdit) {
