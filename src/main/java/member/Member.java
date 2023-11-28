@@ -1,6 +1,7 @@
     package member;
 
     import java.time.LocalDate;
+    import java.time.Period;
 
     public class Member {
         private String name;
@@ -90,10 +91,11 @@
 
         @Override
         public String toString() {
+            int age = Period.between(this.birthday, LocalDate.now()).getYears();
             return "Member{" +
                     "name='" + name + '\'' +
                     ", adresse='" + address + '\'' +
-                    ", age=' " + birthday + '\'' +
+                    ", age=' " + age + '\'' +
                     ", medlemsnummer=" + memberID +
                     ", email='" + email + '\'' +
                     ", medlemstype=" + (isCompetitiveSwimmer ? "Competitive": "Non Competitive")+

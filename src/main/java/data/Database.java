@@ -6,7 +6,6 @@ import member.Member;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Random;
 
 public class Database {
@@ -15,8 +14,8 @@ public class Database {
     public Database() {
         this.members = new ArrayList<>();
         LocalDate birthday = LocalDate.of(1987, 12, 3);
-        members.add(new CompetitiveSwimmer("Grete Bjerre", "Nyborggade 1tv", birthday, 198712377, "GreteBjerre@gmail.com", true, "Michael", "Crawl"));
-        members.add(new CompetitiveSwimmer("Hello World", "Fubarveh 42", LocalDate.of(2010, 10, 26), 261082126, "hello@gmail.com", true, "Michael", "Butterfly"));
+        members.add(new CompetitiveSwimmer("Grete Bjerre", "Nyborggade 1tv", birthday, 198712377, "GreteBjerre@gmail.com", true, "Michael", "Crawl", 1, 2,3));
+        members.add(new CompetitiveSwimmer("Hello World", "Fubarveh 42", LocalDate.of(2010, 10, 26), 261082126, "hello@gmail.com", true, "Michael", "Butterfly",4,5,6));
         members.add(new Member("Hej Bror", "Villa lort 1337", LocalDate.of(1994, 12, 29), 123451234, "fubar@gmail.com", false, true));
     }
 
@@ -27,8 +26,8 @@ public class Database {
 
     }
 
-    public void registerNewCompetitiveSwimmer(String name, String address, LocalDate birthday, int memberID, String email, boolean membershipType, boolean isActive, String coach, String discipline, boolean division) {
-        members.add(new CompetitiveSwimmer(name, address, birthday, memberID, email, isActive, coach, discipline));
+    public void registerNewCompetitiveSwimmer(String name, String address, LocalDate birthday, int memberID, String email, boolean membershipType, String coach, String discipline, int minutes, int seconds, int milliseconds) {
+        members.add(new CompetitiveSwimmer(name, address, birthday, memberID, email,membershipType, coach, discipline, minutes, seconds, milliseconds));
     }
 
     public void editMember(Member memberToEdit) {
@@ -64,17 +63,14 @@ public class Database {
         return seniorTeam;
     }
 
-    public int getAge() {
-        LocalDate localDate = LocalDate.now();
-        for (Member member : members) {
-            if (member.getBirthday() != null) {
-                return Period.between(member.getBirthday(), localDate).getYears();
-            } else {
-                return 0;
-            }
+    public int getAge(Member member) {
+        if (member.getBirthday() == null) {
+            return 0;
         }
-        return 0;
+        LocalDate localDate = LocalDate.now();
+        return Period.between(member.getBirthday(), localDate).getYears();
     }
+
 
     public int IDCreation() {
         Random random = new Random();
@@ -83,10 +79,19 @@ public class Database {
             if (member.getBirthday() != null) {
                 LocalDate birthday = member.getBirthday();
                 int dateAsInt = birthday.getYear() * 10000 + birthday.getMonthValue() * 100 + birthday.getDayOfMonth() + r;
-                int dateAsInt2 = birthday.getYear() + birthday.getMonthValue() + birthday.getDayOfMonth() + r;
                 System.out.println(dateAsInt);
             }
         }
         return 0;
     }
-}
+    public void removeMemberFromList(String name){
+        ArrayList<Member> memberToRemove = new ArrayList<>();
+        for (Member memberInDatabase : members) {
+            if (memberInDatabase.getName().trim().equalsIgnoreCase(name)) {
+                memberToRemove.add(memberInDatabase);
+            }
+        }
+        members.removeAll(memberToRemove);
+    }
+    }
+

@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-import member.Member;
 import member.CompetitiveSwimmer;
+import member.Member;
 import member.ControllerMember;
 
 public class UIChairman {
@@ -36,17 +36,27 @@ public class UIChairman {
                 memberID = birthday.getYear() * 10000 + birthday.getMonthValue() * 100 + birthday.getDayOfMonth() + r;
             } catch (DateTimeParseException e) {
                 System.out.println("Ugyldigt datoformat. Prøv igen.");
-
             }
         }
         System.out.print("Email of member: ");
-        scanner.nextLine();
         String email = scanner.nextLine();
         boolean membershipType = false;
         boolean isActive = false;
-        boolean validInput = false;
 
-        while (!validInput) {
+        while (true) {
+            System.out.println("Is member competitive?");
+            System.out.println("Press 1 for competitive, press 2 for non competitive");
+            int membershipInput = scanner.nextInt();
+            if (membershipInput == 1) {
+                String defaultCoach = "TBD"; // To be determined
+                String defaultDiscipline = "TBD"; // To be determined
+                int defaultMinutes = 0;
+                int defaultSeconds = 0;
+                int defaultHundredths = 0;
+                controllerMember.registerNewCompetitiveSwimmer(name, address, birthday, memberID, email, isActive, defaultCoach, defaultDiscipline, defaultMinutes, defaultSeconds, defaultHundredths);
+            } else if (membershipInput == 2) {
+                controllerMember.registerMember(name, address, birthday, memberID, email, membershipType, isActive);
+            }
             System.out.println("Is member active or passive?");
             System.out.println("Press 1 for active. Press 2 for passive");
             int activeInput = scanner.nextInt();
@@ -59,25 +69,16 @@ public class UIChairman {
             } else {
                 System.out.println("Invalid input. Please enter '1' or '2'.");
             }
-            System.out.println("Is member competitive?");
-            System.out.println("press 1 for competitive, press 2 for non competitive");
-            int membershipInput = scanner.nextInt();
-            if (membershipInput == 1) {
-                membershipType = true;
 
-            } else if (membershipInput == 2) {
-                membershipType = false;
-                break;
-            } else {
-                System.out.println("Invalid input. Please enter '1' or '2'.");
-            }
+            System.out.println("Invalid input. Please enter '1' or '2'.");
+
+
             scanner.nextLine();
 
+            controllerMember.registerMember(name, address, birthday, memberID, email, membershipType, isActive);
 
         }
-        controllerMember.registerMember(name, address, birthday, memberID, email, membershipType, isActive);
     }
-
     public void editMember() {
         String partialSearchCriteria = scanner.nextLine();
 
@@ -140,19 +141,18 @@ public class UIChairman {
                     memberToEdit.setEmail(newEmail);
                 }
 
-                System.out.print("Enter the new membership type (press Enter to keep the current membership): ");
-                String newMembershipType = scanner.nextLine().trim().toLowerCase();
-                if (!newMembershipType.isEmpty()) {
-                    boolean newMembership = newMembershipType.equals("ja");
-                    memberToEdit.setCompetitiveSwimmer(newMembership);
+                System.out.print("Enter the new membership type (1 for competitive, 2 for non-competitive, press Enter to keep the current): ");
+                String membershipInput = scanner.nextLine();
+                if (!membershipInput.isEmpty()) {
+                    memberToEdit.setCompetitiveSwimmer(membershipInput.equals("1"));
                 }
 
-                System.out.print("Enter the new activity level (press Enter to keep the current activity level): ");
-                String newActive = scanner.nextLine().trim().toLowerCase();
-                if (!newActive.isEmpty()) {
-                    boolean newisActive = newActive.equals("ja");
-                    memberToEdit.setCompetitiveSwimmer(newisActive);
+                System.out.print("Enter the new activity level (1 for active, 2 for passive, press Enter to keep the current): ");
+                String activityInput = scanner.nextLine();
+                if (!activityInput.isEmpty()) {
+                    memberToEdit.setActive(activityInput.equals("1"));
                 }
+
 
                 controllerMember.editMember(memberToEdit);
             }
@@ -160,15 +160,8 @@ public class UIChairman {
     }
 
     private void printMemberDetails(Member member) {
-        controllerMember.IDCreation();
-        System.out.println(controllerMember.getAge());
         System.out.println(member);
 
-    }
-    private void printSwimmers(ArrayList<CompetitiveSwimmer> Team) {
-        for (CompetitiveSwimmer swimmer : Team) {
-            printMemberDetails(swimmer);
-        }
     }
 
     public void showMember() {
@@ -180,35 +173,46 @@ public class UIChairman {
         }
 
     }
-        public void chairmanMenu() {
-            while (true) {
-                System.out.println("""
-                        Velkommen til menuen for formanden.
-                        1. Vis medlem
-                        2. Opret medlem
-                        3. Rediger medlem
-                        4. Slet medlem
-                        5. IDCreation
-                        6. Vis konkurrencesvømmere junior division
-                        7. Vis konkurrencesvømmere Senior division
-                        """);
-                try {
-                    int choice = scanner.nextInt();
-                    scanner.nextLine(); //bugfix
 
-                    switch (choice) {
-                        case 1 -> showMember();
-                        case 2 -> registerMember();
-                        case 3 -> editMember();
-                        //case 4 -> removeMember();
-                        case 5 -> controllerMember.IDCreation();
-                        case 6 -> printSwimmers(controllerMember.juniorTeam());
-                        case 7 -> printSwimmers(controllerMember.seniorTeam());
-                    }
-                } catch (Exception e) {
-                    System.out.println("Der opstod en fejl: " + e.getMessage());
-                    scanner.nextLine();
+    public void chairmanMenu() {
+        while (true) {
+            System.out.println("""
+                    Velkommen til menuen for formanden.
+                    1. Vis medlem
+                    2. Opret medlem
+                    3. Rediger medlem
+                    4. Slet medlem
+                    5. IDCreation
+                    """);
+            try {
+                int choice = scanner.nextInt();
+                scanner.nextLine(); //bugfix
+
+                switch (choice) {
+                    case 1 -> showMember();
+                    case 2 -> registerMember();
+                    case 3 -> editMember();
+                    case 4 -> removeMember();
+                    case 5 -> controllerMember.IDCreation();
                 }
+            } catch (Exception e) {
+                System.out.println("Der opstod en fejl: " + e.getMessage());
+                scanner.nextLine();
             }
         }
     }
+
+    private void removeMember() {
+        System.out.println("Enter the name of the member you wish to remove: ");
+        String memberToRemove = scanner.nextLine().trim().toLowerCase(); // Convert input to lowercase
+        controllerMember.removeMember(memberToRemove);
+        // Check if any members were removed
+        if (controllerMember.getAllMembers().stream().noneMatch(member ->
+                member.getName().trim().equalsIgnoreCase(memberToRemove))) {
+            System.out.println("Member(s) removed successfully.");
+        } else {
+            System.out.println("Member not found in the database.");
+        }
+    }
+}
+
