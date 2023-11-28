@@ -28,6 +28,9 @@ public class UICoach {
             printMemberDetails(swimmer);
         }
     }
+    private void sort(){
+        controllerMember.sortBySpeed();
+    }
 
     public void coachMenu() {
         while (true) {

@@ -15,8 +15,8 @@ public class ControllerMember {
     public void registerMember(String name, String address, LocalDate birthday, int memberID, String email, boolean membershipType, boolean isActive) {
         db.registerNewMember(name, address, birthday, memberID, email, membershipType, isActive);
     }
-    public void registerNewCompetitiveSwimmer(String name, String address, LocalDate birthday, int memberID, String email, boolean membershipType, String coach, String discipline, int minutes, int seconds, int milliseconds) {
-        db.registerNewCompetitiveSwimmer(name, address, birthday, memberID, email, membershipType, coach, discipline, minutes, seconds, milliseconds);
+    public void registerNewCompetitiveSwimmer(String name, String address, LocalDate birthday, int memberID, String email, boolean membershipType, String coach, String discipline, LocalDate dateWhenAchieved, int minutes, int seconds, int milliseconds) {
+        db.registerNewCompetitiveSwimmer(name, address, birthday, memberID, email, membershipType, coach, discipline, dateWhenAchieved, minutes, seconds, milliseconds);
     }
     public ArrayList<CompetitiveSwimmer> juniorTeam() {
         return db.getJuniorTeam();

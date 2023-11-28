@@ -2,18 +2,23 @@ package member;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 
 public class CompetitiveSwimmer extends Member {
     private String coach;
     private String discipline;
+    private LocalDate dateWhenAchieved;
     private Duration bestTime;
 
 
-    public CompetitiveSwimmer(String name, String address, LocalDate birthday, int memberID, String email, boolean isActive, String coach, String discipline, int minutes, int seconds, int hundredths) {
+
+    public CompetitiveSwimmer(String name, String address, LocalDate birthday, int memberID, String email, boolean isActive, String coach, String discipline, LocalDate dateWhenAchieved, int minutes, int seconds, int hundredths) {
         super(name, address, birthday, memberID, email, true, isActive);
         this.coach = coach;
         this.discipline = discipline;
+        this.dateWhenAchieved = dateWhenAchieved;
         this.bestTime = Duration.ofMinutes(minutes).plusSeconds(seconds).plusMillis(hundredths * 10);
 
     }
@@ -39,6 +44,17 @@ public class CompetitiveSwimmer extends Member {
         return discipline;
     }
 
+    public LocalDate getDateWhenAchieved() {
+        return dateWhenAchieved;
+    }
+
+    public void setDateWhenAchieved(LocalDate dateWhenAchieved) {
+        this.dateWhenAchieved = dateWhenAchieved;
+    }
+    public String formatDateWhenAchieved() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return dateWhenAchieved.format(formatter);
+    }
 
 
     @Override

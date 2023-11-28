@@ -1,21 +1,28 @@
 package data;
 
+import comparator.BestTimeComparator;
 import member.CompetitiveSwimmer;
 import member.Member;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Database {
     private ArrayList<Member> members;
+    BestTimeComparator btc = new BestTimeComparator();
 
     public Database() {
         this.members = new ArrayList<>();
         LocalDate birthday = LocalDate.of(1987, 12, 3);
-        members.add(new CompetitiveSwimmer("Grete Bjerre", "Nyborggade 1tv", birthday, 198712377, "GreteBjerre@gmail.com", true, "Michael", "Crawl", 1, 2,3));
-        members.add(new CompetitiveSwimmer("Hello World", "Fubarveh 42", LocalDate.of(2010, 10, 26), 261082126, "hello@gmail.com", true, "Michael", "Butterfly",4,5,6));
+        members.add(new CompetitiveSwimmer("Grete Bjerre", "Nyborggade 1tv", birthday, 198712377, "GreteBjerre@gmail.com", true, "Michael", "Crawl",LocalDate.of(2001, 12, 3) , 4, 5,6));
+        members.add(new CompetitiveSwimmer("Hello World", "Fubarveh 42", LocalDate.of(2010, 10, 26), 261082126, "hello@gmail.com", true, "Michael", "Butterfly",LocalDate.of(1987, 12, 3),4,5,6));
+        members.add(new CompetitiveSwimmer("Grete Bjerre", "Nyborggade 1tv", birthday, 198712377, "GreteBjerre@gmail.com", true, "Michael", "Crawl",LocalDate.of(1987, 12, 3), 1,2,3));
+        members.add(new CompetitiveSwimmer("Hello World", "Fubarveh 42", LocalDate.of(2010, 10, 26), 261082126, "hello@gmail.com", true, "Michael", "Butterfly",LocalDate.of(1987, 12, 3),10,11,12));
+        members.add(new CompetitiveSwimmer("Grete Bjerre", "Nyborggade 1tv", birthday, 198712377, "GreteBjerre@gmail.com", true, "Michael", "Crawl",LocalDate.of(1987, 12, 3), 7,8,9));
+        members.add(new CompetitiveSwimmer("Hello World", "Fubarveh 42", LocalDate.of(2010, 10, 26), 261082126, "hello@gmail.com", true, "Michael", "Butterfly",LocalDate.of(1987, 12, 3),7,8,9));
         members.add(new Member("Hej Bror", "Villa lort 1337", LocalDate.of(1994, 12, 29), 123451234, "fubar@gmail.com", false, true));
     }
 
@@ -26,8 +33,8 @@ public class Database {
 
     }
 
-    public void registerNewCompetitiveSwimmer(String name, String address, LocalDate birthday, int memberID, String email, boolean membershipType, String coach, String discipline, int minutes, int seconds, int milliseconds) {
-        members.add(new CompetitiveSwimmer(name, address, birthday, memberID, email,membershipType, coach, discipline, minutes, seconds, milliseconds));
+    public void registerNewCompetitiveSwimmer(String name, String address, LocalDate birthday, int memberID, String email, boolean membershipType, String coach, String discipline, LocalDate dateWhenAchieved, int minutes, int seconds, int milliseconds) {
+        members.add(new CompetitiveSwimmer(name, address, birthday, memberID, email,membershipType, coach, discipline, dateWhenAchieved, minutes, seconds, milliseconds));
     }
 
     public void editMember(Member memberToEdit) {
@@ -93,5 +100,20 @@ public class Database {
         }
         members.removeAll(memberToRemove);
     }
+    public void printSortedCompetitiveSwimmers() {
+        List<CompetitiveSwimmer> sortedSwimmers = getSortedCompetitiveSwimmers();
+        for (CompetitiveSwimmer swimmer : sortedSwimmers) {
+            System.out.println(swimmer);
+        }
     }
+
+    private List<CompetitiveSwimmer> getSortedCompetitiveSwimmers() {
+        return members.stream()
+                .filter(member -> member instanceof CompetitiveSwimmer)
+                .map(member -> (CompetitiveSwimmer) member)
+                .sorted(new BestTimeComparator())
+                .collect(Collectors.toList());
+    }
+
+}
 

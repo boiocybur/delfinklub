@@ -50,10 +50,11 @@ public class UIChairman {
             if (membershipInput == 1) {
                 String defaultCoach = "TBD"; // To be determined
                 String defaultDiscipline = "TBD"; // To be determined
+                LocalDate defaultdateWhenAchieved = LocalDate.of(2000,12,29);
                 int defaultMinutes = 0;
                 int defaultSeconds = 0;
                 int defaultHundredths = 0;
-                controllerMember.registerNewCompetitiveSwimmer(name, address, birthday, memberID, email, isActive, defaultCoach, defaultDiscipline, defaultMinutes, defaultSeconds, defaultHundredths);
+                controllerMember.registerNewCompetitiveSwimmer(name, address, birthday, memberID, email, isActive, defaultCoach, defaultDiscipline, defaultdateWhenAchieved, defaultMinutes, defaultSeconds, defaultHundredths);
             } else if (membershipInput == 2) {
                 controllerMember.registerMember(name, address, birthday, memberID, email, membershipType, isActive);
             }
