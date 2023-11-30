@@ -91,12 +91,11 @@ public class Database {
         return seniorTeam;
     }
 
-    public int getAge(Member member) {
-        if (member.getBirthday() == null) {
-            return 0;
+    public int getAge() {
+        for (Member member : members) {
+
         }
-        LocalDate localDate = LocalDate.now();
-        return Period.between(member.getBirthday(), localDate).getYears();
+        return 0;
     }
 
 
@@ -135,6 +134,47 @@ public class Database {
                 .sorted(new BestTimeComparator())
                 .collect(Collectors.toList());
     }
+
+   /* public int memberContingent() {
+        for (Member member : members) {
+            LocalDate localDate = LocalDate.now();
+            int age = Period.between(member.getBirthday(), localDate).getYears();
+            boolean isActive = member.isActive();
+
+            if (age < 17 && isActive) {
+                return 1000;
+            } else if (age > 17 && isActive) {
+                return 1600;
+            } else if (age < 59 && isActive) {
+                int intermediary = Math.multiplyExact(1600, 25);
+                return Math.divideExact(intermediary, 100);
+
+            } else {
+                return 500;
+            }
+        } return 0;
+    }*/
+  /*  public int totalContingent(){
+        for (Member member : members) {
+            LocalDate localDate = LocalDate.now();
+            int age = Period.between(member.getBirthday(), localDate).getYears();
+            boolean isActive = member.isActive();
+            return member.hashCode();
+            if (age < 17 && isActive) {
+                int amountInGroup = member.hashCode();
+                return Math.multiplyExact(amountInGroup, 1000);
+            } else if (age > 17 && isActive) {
+                return 1600;
+            } else if (age < 59 && isActive) {
+                int intermediary = Math.multiplyExact(1600, 25);
+                return Math.divideExact(intermediary, 100);
+
+            } else {
+                return 500;
+            }
+
+        return 0;
+    }*/
 
 }
 

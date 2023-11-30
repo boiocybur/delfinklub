@@ -46,9 +46,9 @@ public class ControllerMember {
         db.save();
     }
 
-    public int getAge(Member member) {
-        return db.getAge(member);
-    }
+//    public int getAge(Member member) {
+//        return db.getAge(member);
+//    }
 
     public int IDCreation() {
         return db.IDCreation();
