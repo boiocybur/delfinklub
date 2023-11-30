@@ -40,8 +40,9 @@ public class Database {
     public void editMember(Member memberToEdit) {
         for (int i = 0; i < members.size(); i++) {
             Member member = members.get(i);
-            if (member.isActive()) {
+            if (member.isActive() && member.equals(memberToEdit)) {
                 members.set(i, memberToEdit);
+                break;
             }
         }
     }
