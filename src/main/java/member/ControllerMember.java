@@ -1,6 +1,7 @@
 package member;
 import data.Database;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -15,8 +16,8 @@ public class ControllerMember {
     public void registerMember(String name, String address, LocalDate birthday, int memberID, String email, boolean membershipType, boolean isActive) {
         db.registerNewMember(name, address, birthday, memberID, email, membershipType, isActive);
     }
-    public void registerNewCompetitiveSwimmer(String name, String address, LocalDate birthday, int memberID, String email, boolean membershipType, String coach, String discipline, LocalDate dateWhenAchieved, int minutes, int seconds, int milliseconds) {
-        db.registerNewCompetitiveSwimmer(name, address, birthday, memberID, email, membershipType, coach, discipline, dateWhenAchieved, minutes, seconds, milliseconds);
+    public void registerNewCompetitiveSwimmer(String name, String address, LocalDate birthday, int memberID, String email, boolean membershipType, String coach, String discipline, String meet, String placement, LocalDate dateWhenAchieved, int minutes, int seconds, int milliseconds) {
+        db.registerNewCompetitiveSwimmer(name, address, birthday, memberID, email, membershipType, coach, discipline, meet, placement, dateWhenAchieved, minutes, seconds, milliseconds);
     }
     public ArrayList<CompetitiveSwimmer> juniorTeam() {
         return db.getJuniorTeam();
@@ -34,6 +35,17 @@ public class ControllerMember {
         return db.getAllMembers();
     }
 
+    public ArrayList<CompetitiveSwimmer> getAllCompetitiveSwimmers() {
+        return db.getAllCompetitiveSwimmers();
+    }
+
+    public void load() throws IOException {
+        db.load();
+    }
+    public void save(){
+        db.save();
+    }
+
     public int getAge(Member member) {
         return db.getAge(member);
     }
@@ -47,5 +59,8 @@ public class ControllerMember {
     }
     public void sortBySpeed(){
         db.printSortedCompetitiveSwimmers();
+    }
+
+    public void editCompetitiveSwimmer(CompetitiveSwimmer swimmerToEdit) {
     }
 }

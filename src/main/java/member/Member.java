@@ -95,12 +95,11 @@
             return "Member{" +
                     "name='" + name + '\'' +
                     ", adresse='" + address + '\'' +
-                    ", age=' " + age + '\'' +
+                    ", age=" + age +
                     ", medlemsnummer=" + memberID +
                     ", email='" + email + '\'' +
-                    ", medlemstype=" + (isCompetitiveSwimmer ? "Competitive": "Non Competitive")+
+                    ", medlemstype=" + (isCompetitiveSwimmer ? "Competitive" : "Non Competitive") +
                     ", active=" + (isActive ? "Active" : "Passive") +
                     '}';
         }
-
     }

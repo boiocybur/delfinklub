@@ -20,14 +20,14 @@ public class UIChairman {
     }
 
     public void registerMember() {
-        System.out.print("Name of member: ");
+        System.out.print("Medlemmets navn: ");
         String name = scanner.nextLine();
-        System.out.print("Address of member: ");
+        System.out.print("Medlemmets adresse: ");
         String address = scanner.nextLine();
         LocalDate birthday = null;
         int memberID = 0;
         while (birthday == null) {
-            System.out.print("Birthday of member (yyyy-MM-dd): ");
+            System.out.print("Medlemmets fødselsdato (yyyy-MM-dd): ");
             String birthdayStr = scanner.nextLine();
             try {
                 birthday = LocalDate.parse(birthdayStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -38,28 +38,30 @@ public class UIChairman {
                 System.out.println("Ugyldigt datoformat. Prøv igen.");
             }
         }
-        System.out.print("Email of member: ");
+        System.out.print("Medlemmets email: ");
         String email = scanner.nextLine();
         boolean membershipType = false;
         boolean isActive = false;
 
         while (true) {
-            System.out.println("Is member competitive?");
-            System.out.println("Press 1 for competitive, press 2 for non competitive");
+            System.out.println("Er medlemmet konkurrencesvømmer?");
+            System.out.println("Tryk på 1 for konkurrencesvømmer, tryk på 2 for ikke konkurrencesvømmer.");
             int membershipInput = scanner.nextInt();
             if (membershipInput == 1) {
                 String defaultCoach = "TBD"; // To be determined
                 String defaultDiscipline = "TBD"; // To be determined
+                String defaultMeet = "TBD"; // To be determined
+                String defaultPlacement = "TBD"; // To be determined
                 LocalDate defaultdateWhenAchieved = LocalDate.of(2000,12,29);
                 int defaultMinutes = 0;
                 int defaultSeconds = 0;
                 int defaultHundredths = 0;
-                controllerMember.registerNewCompetitiveSwimmer(name, address, birthday, memberID, email, isActive, defaultCoach, defaultDiscipline, defaultdateWhenAchieved, defaultMinutes, defaultSeconds, defaultHundredths);
+                controllerMember.registerNewCompetitiveSwimmer(name, address, birthday, memberID, email, isActive, defaultCoach, defaultDiscipline,defaultMeet, defaultPlacement, defaultdateWhenAchieved, defaultMinutes, defaultSeconds, defaultHundredths);
             } else if (membershipInput == 2) {
                 controllerMember.registerMember(name, address, birthday, memberID, email, membershipType, isActive);
             }
-            System.out.println("Is member active or passive?");
-            System.out.println("Press 1 for active. Press 2 for passive");
+            System.out.println("Er medlemmet aktivt eller passivt?");
+            System.out.println("Tryk på 1 for aktivt. Tryk på 2 for passivt.");
             int activeInput = scanner.nextInt();
             if (activeInput == 1) {
                 isActive = true;
@@ -68,10 +70,10 @@ public class UIChairman {
                 isActive = false;
                 break;
             } else {
-                System.out.println("Invalid input. Please enter '1' or '2'.");
+                System.out.println("Ugyldig input. Indtast venligst '1' eller '2'.");
             }
 
-            System.out.println("Invalid input. Please enter '1' or '2'.");
+            System.out.println("Ugyldig input. Indtast venligst '1' eller '2'.");
 
 
             scanner.nextLine();
@@ -91,64 +93,64 @@ public class UIChairman {
         }
 
         if (matchingMembers.isEmpty()) {
-            System.out.println("No members found matching the search criteria.");
+            System.out.println("Ingen medlemmer fundet, der matcher søgekriterierne.");
         } else {
-            System.out.println("Matching members:");
+            System.out.println("Matchende medlemmer:");
 
             for (int i = 0; i < matchingMembers.size(); i++) {
                 Member member = matchingMembers.get(i);
                 System.out.println(i + 1 + ". " + member.getName());
             }
 
-            System.out.print("Enter the name of the member you want to edit: ");
+            System.out.print("Indtast navnet på det medlem, du vil redigere: ");
             int selection = scanner.nextInt();
 
             if (selection >= 1 && selection <= matchingMembers.size()) {
                 Member memberToEdit = matchingMembers.get(selection - 1);
 
-                System.out.println("Current details of the member:");
+                System.out.println("Nuværende detaljer for medlemmet:");
                 printMemberDetails(memberToEdit);
                 scanner.nextLine();
 
-                System.out.print("Enter the new name (press Enter to keep the current name): ");
+                System.out.print("Indtast det nye navn (tryk på Enter for at beholde det nuværende navn): ");
                 String newName = scanner.nextLine();
                 if (!newName.trim().isEmpty()) {
                     memberToEdit.setName(newName);
                 }
 
-                System.out.print("Enter the new address (press Enter to keep the current address): ");
+                System.out.print("Indtast den nye adresse (tryk på Enter for at beholde den nuværende adresse): ");
                 String newAddress = scanner.nextLine();
                 if (!newAddress.trim().isEmpty()) {
                     memberToEdit.setAddress(newAddress);
                 }
 
-                System.out.print("Enter the new age (press Enter to keep the current value): ");
+                System.out.print("Indtast den nye alder (tryk på Enter for at beholde den nuværende værdi): ");
                 String newAgeInput = scanner.nextLine();
                 if (!newAgeInput.isEmpty()) {
                     LocalDate newAge = LocalDate.parse(newAgeInput);
                     memberToEdit.setBirthday(newAge);
                 }
 
-                System.out.print("Enter the new member ID (press Enter to keep the current ID): ");
+                System.out.print("Indtast den nye medlems-ID (tryk på Enter for at beholde den nuværende ID): ");
                 String memberID = scanner.nextLine();
                 if (!memberID.isEmpty()) {
                     int newID = Integer.parseInt(memberID);
                     memberToEdit.setMemberID(newID);
                 }
 
-                System.out.print("Enter the new email type (press Enter to keep the current email): ");
+                System.out.print("Indtast den nye e-mailtype (tryk på Enter for at beholde den nuværende e-mail): ");
                 String newEmail = scanner.nextLine();
                 if (!newEmail.trim().isEmpty()) {
                     memberToEdit.setEmail(newEmail);
                 }
 
-                System.out.print("Enter the new membership type (1 for competitive, 2 for non-competitive, press Enter to keep the current): ");
+                System.out.print("Indtast den nye medlemstype (1 for konkurrencesvømmer, 2 for ikke-konkurrencesvømmer, tryk på Enter for at beholde den nuværende): ");
                 String membershipInput = scanner.nextLine();
                 if (!membershipInput.isEmpty()) {
                     memberToEdit.setCompetitiveSwimmer(membershipInput.equals("1"));
                 }
 
-                System.out.print("Enter the new activity level (1 for active, 2 for passive, press Enter to keep the current): ");
+                System.out.print("Indtast den nye aktivitetsniveau (1 for aktiv, 2 for passiv, tryk på Enter for at beholde den nuværende): ");
                 String activityInput = scanner.nextLine();
                 if (!activityInput.isEmpty()) {
                     memberToEdit.setActive(activityInput.equals("1"));
@@ -176,7 +178,8 @@ public class UIChairman {
     }
 
     public void chairmanMenu() {
-        while (true) {
+        boolean exit = false;
+        while (!exit) {
             System.out.println("""
                     Velkommen til menuen for formanden.
                     1. Vis medlem
@@ -184,6 +187,9 @@ public class UIChairman {
                     3. Rediger medlem
                     4. Slet medlem
                     5. IDCreation
+                    6. Load medlemmer
+                    7. Save medlemmer
+                    0. Gå tilbage
                     """);
             try {
                 int choice = scanner.nextInt();
@@ -195,6 +201,9 @@ public class UIChairman {
                     case 3 -> editMember();
                     case 4 -> removeMember();
                     case 5 -> controllerMember.IDCreation();
+                    case 6 -> controllerMember.load();
+                    case 7 -> controllerMember.save();
+                    case 0 -> exit = true;
                 }
             } catch (Exception e) {
                 System.out.println("Der opstod en fejl: " + e.getMessage());
@@ -204,15 +213,15 @@ public class UIChairman {
     }
 
     private void removeMember() {
-        System.out.println("Enter the name of the member you wish to remove: ");
+        System.out.println("Indtast navnet på det medlem, du ønsker at fjerne: ");
         String memberToRemove = scanner.nextLine().trim().toLowerCase(); // Convert input to lowercase
         controllerMember.removeMember(memberToRemove);
         // Check if any members were removed
         if (controllerMember.getAllMembers().stream().noneMatch(member ->
                 member.getName().trim().equalsIgnoreCase(memberToRemove))) {
-            System.out.println("Member(s) removed successfully.");
+            System.out.println("Medlem(mer) fjernet ");
         } else {
-            System.out.println("Member not found in the database.");
+            System.out.println("Medlem ikke fundet i databasen.");
         }
     }
 }

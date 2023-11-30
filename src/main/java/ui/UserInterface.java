@@ -17,6 +17,7 @@ public class UserInterface {
                     1. Formand
                     2. Kasserer
                     3. Træner
+                    0. Sluk programmet
                     """);
 
 
@@ -28,9 +29,13 @@ public class UserInterface {
                     case 1 -> uichairman.chairmanMenu();
                     case 2 -> uicashier.cashierMenu();
                     case 3 -> uicoach.coachMenu();
+                    case 0 -> {
+                        System.out.println("Slukker programmet!");
+                        System.exit(0);
+                    }
                 }
             } catch (InputMismatchException ime) {
-                System.out.println("Invalid input. Please enter a valid integer.");
+                System.out.println("Ugyldig input. Indtast venligst et gyldigt heltal.");
                 scanner.nextLine(); // Consume the invalid input
             }
         }
