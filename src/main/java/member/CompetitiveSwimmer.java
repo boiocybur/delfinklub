@@ -64,8 +64,10 @@ public class CompetitiveSwimmer extends Member {
                 "coach='" + coach + '\'' +
                 ", discipline='" + discipline + '\'' +
                 ", bestTime='" + formatBestTime() + '\'' +
+                ", dateWhenAchieved='" + formatDateWhenAchieved() + '\'' +
                 '}';
     }
+
 
 }
 

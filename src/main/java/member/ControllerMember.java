@@ -45,4 +45,7 @@ public class ControllerMember {
     public void removeMember(String name) {
         db.removeMemberFromList(name);
     }
+    public void sortBySpeed(){
+        db.printSortedCompetitiveSwimmers();
+    }
 }

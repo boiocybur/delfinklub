@@ -47,7 +47,7 @@ public class UICoach {
                 switch (choice) {
                    case 1 -> printSwimmers(controllerMember.juniorTeam());
                    case 2 -> printSwimmers(controllerMember.seniorTeam());
-                   //case 3 ->
+                   case 3 -> sort();
                 }
             } catch (Exception e) {
                 System.out.println("Der opstod en fejl: " + e.getMessage());
