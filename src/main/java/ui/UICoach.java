@@ -31,7 +31,7 @@ public class UICoach {
 
     private void sort() {
         controllerMember.sortBySpeed();
-        controllerMember.save();
+        controllerMember.saveMembers();
     }
 
     public void coachMenu() {
@@ -54,6 +54,7 @@ public class UICoach {
                     case 2 -> printSwimmers(controllerMember.seniorTeam());
                     case 3 -> sort();
                     case 4 -> editCompetitiveMember();
+                    case 5 -> controllerMember.loadMembers();
                     case 0 -> exit = true;
                 }
             } catch (Exception e) {
@@ -136,7 +137,7 @@ public class UICoach {
             }
 
             controllerMember.editCompetitiveSwimmer(swimmerToEdit);
-            controllerMember.save();
+            controllerMember.saveMembers();
             System.out.println("Konkurrence svømmer opdateret succesfuldt! ");
         } else {
             System.out.println("Konkurrence svømmer ikke fundet.");

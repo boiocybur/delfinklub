@@ -16,8 +16,8 @@ public class ControllerMember {
     public void registerMember(String name, String address, LocalDate birthday, int memberID, String email, boolean membershipType, boolean isActive) {
         db.registerNewMember(name, address, birthday, memberID, email, membershipType, isActive);
     }
-    public void registerNewCompetitiveSwimmer(String name, String address, LocalDate birthday, int memberID, String email, boolean membershipType, String coach, String discipline, String meet, String placement, LocalDate dateWhenAchieved, int minutes, int seconds, int milliseconds) {
-        db.registerNewCompetitiveSwimmer(name, address, birthday, memberID, email, membershipType, coach, discipline, meet, placement, dateWhenAchieved, minutes, seconds, milliseconds);
+    public void registerNewCompetitiveSwimmer(String name, String address, LocalDate birthday, int memberID, String email, boolean membershipType, boolean isActive, String coach, String discipline, String meet, String placement, LocalDate dateWhenAchieved, int minutes, int seconds, int milliseconds) {
+        db.registerNewCompetitiveSwimmer(name, address, birthday, memberID, email, membershipType, isActive, coach, discipline, meet, placement, dateWhenAchieved, minutes, seconds, milliseconds);
     }
     public ArrayList<CompetitiveSwimmer> juniorTeam() {
         return db.getJuniorTeam();
@@ -39,11 +39,18 @@ public class ControllerMember {
         return db.getAllCompetitiveSwimmers();
     }
 
-    public void load() throws IOException {
-        db.load();
+    public void loadMembers() throws IOException {
+        db.loadMembers();
     }
-    public void save(){
-        db.save();
+    public void saveMembers(){
+        db.saveMembers();
+    }
+    public void saveCompetitiveSwimmers(){
+        db.saveCompetitiveSwimmers();
+    }
+
+    public void loadCompetitiveSwimmers() throws IOException{
+        db.loadCompetitiveSwimmers();
     }
 
 //    public int getAge(Member member) {

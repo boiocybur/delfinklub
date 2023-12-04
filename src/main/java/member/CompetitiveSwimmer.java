@@ -14,7 +14,7 @@ public class CompetitiveSwimmer extends Member {
     private Duration bestTime;
 
 
-    public CompetitiveSwimmer(String name, String address, LocalDate birthday, int memberID, String email, boolean isActive, String coach, String discipline, String meet, String placement, LocalDate dateWhenAchieved, int minutes, int seconds, int hundredths) {
+    public CompetitiveSwimmer(String name, String address, LocalDate birthday, int memberID, String email, boolean isCompetitive, boolean isActive, String coach, String discipline, String meet, String placement, LocalDate dateWhenAchieved, int minutes, int seconds, int hundredths) {
         super(name, address, birthday, memberID, email, true, isActive);
         this.coach = coach;
         this.discipline = discipline;
@@ -37,7 +37,7 @@ public class CompetitiveSwimmer extends Member {
         long minutes = bestTime.toMinutes();
         int seconds = (int) (bestTime.getSeconds() % 60);
         int hundredths = (int) (bestTime.toMillis() % 1000) / 10;
-        return String.format("%d:%02d.%02d", minutes, seconds, hundredths);
+        return String.format("%d:%02d:%02d", minutes, seconds, hundredths);
     }
 
     public String getCoach() {
@@ -88,14 +88,15 @@ public class CompetitiveSwimmer extends Member {
     @Override
     public String toString() {
         return super.toString() +
-                "CompetitiveSwimmer{" +
+           /*     "CompetitiveSwimmer{" +
                 "coach='" + coach + '\'' +
                 ", discipline='" + discipline + '\'' +
                 ", meet='" + meet + '\'' +
                 ", placement='" + placement + '\'' +
-                ", bestTime='" + formatBestTime() + '\'' +
                 ", dateWhenAchieved='" + formatDateWhenAchieved() + '\'' +
-                '}';
+                ", bestTime='" + formatBestTime() + '\'' +
+                '}';*/
+      coach + "," + discipline + "," + meet + "," + placement + "," + formatDateWhenAchieved() + "," + formatBestTime();
     }
 }
 

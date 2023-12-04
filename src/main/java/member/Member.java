@@ -2,6 +2,7 @@
 
     import java.time.LocalDate;
     import java.time.Period;
+    import java.time.format.DateTimeFormatter;
 
     public class Member {
         private String name;
@@ -89,17 +90,20 @@
             this.isCompetitiveSwimmer = competitiveSwimmer;
         }
 
+
+
         @Override
         public String toString() {
-            int age = Period.between(this.birthday, LocalDate.now()).getYears();
-            return "Member{" +
+            //int age = Period.between(this.birthday, LocalDate.now()).getYears();
+            /*return "Member{" +
                     "name='" + name + '\'' +
                     ", adresse='" + address + '\'' +
-                    ", age=" + age +
+                    ", birthday='"  + birthday + '\'' +
                     ", medlemsnummer=" + memberID +
                     ", email='" + email + '\'' +
                     ", medlemstype=" + (isCompetitiveSwimmer ? "Competitive" : "Non Competitive") +
                     ", active=" + (isActive ? "Active" : "Passive") +
-                    '}';
+                    '}';*/
+            return name + "," + address + "," + birthday + "," + memberID + "," + email + "," + isCompetitiveSwimmer + "," + isActive + "\n";
         }
     }

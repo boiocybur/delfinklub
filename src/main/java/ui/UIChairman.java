@@ -56,7 +56,7 @@ public class UIChairman {
                 int defaultMinutes = 0;
                 int defaultSeconds = 0;
                 int defaultHundredths = 0;
-                controllerMember.registerNewCompetitiveSwimmer(name, address, birthday, memberID, email, isActive, defaultCoach, defaultDiscipline,defaultMeet, defaultPlacement, defaultdateWhenAchieved, defaultMinutes, defaultSeconds, defaultHundredths);
+                controllerMember.registerNewCompetitiveSwimmer(name, address, birthday, memberID, email, membershipType, isActive, defaultCoach, defaultDiscipline,defaultMeet, defaultPlacement, defaultdateWhenAchieved, defaultMinutes, defaultSeconds, defaultHundredths);
             } else if (membershipInput == 2) {
                 controllerMember.registerMember(name, address, birthday, memberID, email, membershipType, isActive);
             }
@@ -176,6 +176,15 @@ public class UIChairman {
         }
 
     }
+    public void showCompetitiveSwimmers() {
+        ArrayList<CompetitiveSwimmer> medlem = controllerMember.getAllCompetitiveSwimmers();
+
+        for (CompetitiveSwimmer member : medlem) {
+            printMemberDetails(member);
+
+        }
+    }
+
 
     public void chairmanMenu() {
         boolean exit = false;
@@ -196,13 +205,15 @@ public class UIChairman {
                 scanner.nextLine(); //bugfix
 
                 switch (choice) {
-                    case 1 -> showMember();
+                    case 1 -> showCompetitiveSwimmers();
                     case 2 -> registerMember();
                     case 3 -> editMember();
                     case 4 -> removeMember();
                     case 5 -> controllerMember.IDCreation();
-                    case 6 -> controllerMember.load();
-                    case 7 -> controllerMember.save();
+                    case 6 -> controllerMember.loadMembers();
+                    case 7 -> controllerMember.loadCompetitiveSwimmers();
+                    case 8 -> controllerMember.saveMembers();
+                    case 9 -> controllerMember.saveCompetitiveSwimmers();
                     case 0 -> exit = true;
                 }
             } catch (Exception e) {

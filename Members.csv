@@ -1,8 +1,6 @@
-Member{name='Grete Bjerre', adresse='Nyborggade 1tv', age=35, medlemsnummer=198712377, email='GreteBjerre@gmail.com', medlemstype=Competitive, active=Active}CompetitiveSwimmer{coach='Michael', discipline='Crawl', meet='Meet1', placement='1st', bestTime='4:05.06', dateWhenAchieved='2023-11-24'}
-Member{name='Hello World', adresse='Fubarveh 42', age=13, medlemsnummer=2010102626, email='hello@gmail.com', medlemstype=Competitive, active=Active}CompetitiveSwimmer{coach='Michael', discipline='Butterfly', meet='Meet2', placement='2nd', bestTime='4:05.06', dateWhenAchieved='2023-11-24'}
-Member{name='John Doe', adresse='Street 123', age=88, medlemsnummer=193551534, email='john.doe@email.com', medlemstype=Competitive, active=Active}CompetitiveSwimmer{coach='Trainer1', discipline='Backstroke', meet='Meet3', placement='3rd', bestTime='3:55.78', dateWhenAchieved='2023-11-25'}
-Member{name='Alice Smith', adresse='Avenue 456', age=23, medlemsnummer=200082021, email='alice.smith@email.com', medlemstype=Competitive, active=Active}CompetitiveSwimmer{coach='Trainer2', discipline='Breaststroke', meet='Meet4', placement='2nd', bestTime='2:30.45', dateWhenAchieved='2023-11-25'}
-Member{name='Bob Johnson', adresse='Lane 789', age=25, medlemsnummer=199831033, email='bob.johnson@email.com', medlemstype=Competitive, active=Active}CompetitiveSwimmer{coach='Trainer1', discipline='Butterfly', meet='Meet3', placement='5th', bestTime='5:10.22', dateWhenAchieved='2023-11-25'}
-Member{name='Emma White', adresse='Road 101', age=21, medlemsnummer=20026577, email='emma.white@email.com', medlemstype=Competitive, active=Active}CompetitiveSwimmer{coach='Trainer2', discipline='Freestyle', meet='Meet4', placement='1st', bestTime='1:58.33', dateWhenAchieved='2023-11-25'}
-Member{name='Charlie Brown', adresse='Square 246', age=26, medlemsnummer=19979899, email='charlie.brown@email.com', medlemstype=Competitive, active=Active}CompetitiveSwimmer{coach='Trainer1', discipline='Backstroke', meet='Meet3', placement='4th', bestTime='4:20.15', dateWhenAchieved='2023-11-25'}
-Member{name='Frederik Jensen', adresse='Borgergade 13', age=28, medlemsnummer=1994122934, email='fubar@gmail.com', medlemstype=Non Competitive, active=Active}
+henrik,hostrups,2023-12-12,20231212,hen@gmail.com,false,false
+
+peter,hostrups,2023-12-12,20231212,pet@gmail.com,false,false
+
+mikkel,hostrups,2023-12-12,20231212,mik@gmail.com,false,false
+
