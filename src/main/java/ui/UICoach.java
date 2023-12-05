@@ -42,8 +42,9 @@ public class UICoach {
                     1. Vis konkurrencesvømmere junior division
                     2. Vis konkurrencesvømmere Senior division
                     3. Sorteret liste over hurtigste svømmere
-                    4. Sorteret liste over top 5 svømmere 
                     4. Opdater Konkurrence svømmerners data
+                    5. load medlemmer
+                    6. sorteret liste over 5 fem hurtigste i hver disciplin
                     0. Gå tilbage
                     """);
             try {
@@ -55,7 +56,8 @@ public class UICoach {
                     case 2 -> printSwimmers(controllerMember.seniorTeam());
                     case 3 -> sort();
                     case 4 -> editCompetitiveMember();
-                    case 5 -> controllerMember.loadMembers();
+                    case 5 -> controllerMember.loadCompetitiveSwimmers();
+                    case 6 -> controllerMember.topFive();
                     case 0 -> exit = true;
                 }
             } catch (Exception e) {

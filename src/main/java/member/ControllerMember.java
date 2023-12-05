@@ -13,11 +13,11 @@ public class ControllerMember {
 
     }
 
-    public void registerMember(String name, String address, LocalDate birthday, int memberID, String email, boolean membershipType, boolean isActive) {
-        db.registerNewMember(name, address, birthday, memberID, email, membershipType, isActive);
+    public void registerMember(String name, String address, LocalDate birthday, int memberID, String email, boolean membershipType, boolean isActive, int arrears) {
+        db.registerNewMember(name, address, birthday, memberID, email, membershipType, isActive, arrears);
     }
-    public void registerNewCompetitiveSwimmer(String name, String address, LocalDate birthday, int memberID, String email, boolean membershipType, boolean isActive, String coach, String discipline, String meet, String placement, LocalDate dateWhenAchieved, int minutes, int seconds, int milliseconds) {
-        db.registerNewCompetitiveSwimmer(name, address, birthday, memberID, email, membershipType, isActive, coach, discipline, meet, placement, dateWhenAchieved, minutes, seconds, milliseconds);
+    public void registerNewCompetitiveSwimmer(String name, String address, LocalDate birthday, int memberID, String email, boolean membershipType, boolean isActive, int arrears, String coach, String discipline, String meet, String placement, LocalDate dateWhenAchieved, int minutes, int seconds, int milliseconds) {
+        db.registerNewCompetitiveSwimmer(name, address, birthday, memberID, email, membershipType, isActive, arrears, coach, discipline, meet, placement, dateWhenAchieved, minutes, seconds, milliseconds);
     }
     public ArrayList<CompetitiveSwimmer> juniorTeam() {
         return db.getJuniorTeam();
@@ -69,5 +69,8 @@ public class ControllerMember {
     }
 
     public void editCompetitiveSwimmer(CompetitiveSwimmer swimmerToEdit) {
+    }
+    public void topFive(){
+        db.printTopFiveSwimmersByDiscipline();
     }
 }

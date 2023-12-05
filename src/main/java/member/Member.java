@@ -90,7 +90,13 @@
             this.isCompetitiveSwimmer = competitiveSwimmer;
         }
 
+        public int getArrears() {
+            return arrears;
+        }
 
+        public void setArrears(int arrears) {
+            this.arrears = arrears;
+        }
 
         @Override
         public String toString() {

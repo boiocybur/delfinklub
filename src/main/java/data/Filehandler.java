@@ -33,8 +33,9 @@ public class Filehandler {
                     String email = memberData[4].trim();
                     boolean isCompetitiveSwimmer = Boolean.parseBoolean(memberData[5].trim());
                     boolean isActive = Boolean.parseBoolean(memberData[6].trim());
+                    int arrears = Integer.parseInt(memberData[7].trim());
 
-                    Member member = new Member(name, address, birthday, memberID, email, isCompetitiveSwimmer, isActive);
+                    Member member = new Member(name, address, birthday, memberID, email, isCompetitiveSwimmer, isActive, arrears);
                     temp.add(member);
 
                 }
@@ -59,22 +60,23 @@ public class Filehandler {
                     String email = memberData[4].trim();
                     boolean isCompetitive = Boolean.parseBoolean(memberData[5].trim());
                     boolean isActive = Boolean.parseBoolean(memberData[6].trim());
-                    String coach = memberData[7].trim();
-                    String discipline = memberData[8].trim();
-                    String meet = memberData[9].trim();
-                    String placement = memberData[10].trim();
+                    int restance = Integer.parseInt(memberData[7].trim());
+                    String coach = memberData[8].trim();
+                    String discipline = memberData[9].trim();
+                    String meet = memberData[10].trim();
+                    String placement = memberData[11].trim();
                     //LocalDate dateWhenAchieved = LocalDate.now();
-                    LocalDate dateWhenAchieved = LocalDate.parse(memberData[11].trim());
+                    LocalDate dateWhenAchieved = LocalDate.parse(memberData[12].trim());
                     /*int minutes = Integer.parseInt(memberData[11].trim());
                     int seconds = Integer.parseInt(memberData[12].trim());
                     int hundredths = Integer.parseInt(memberData[13].trim());*/
-                    String[] tid = memberData[12].split(":");
+                    String[] tid = memberData[13].split(":");
                     int minutes = Integer.parseInt(tid[0].trim());
                     int seconds = Integer.parseInt(tid[1].trim());
                     int hundredths = Integer.parseInt(tid[2].trim());
 
 
-                    CompetitiveSwimmer competitiveSwimmer = new CompetitiveSwimmer(name, address, birthday, memberID, email, isCompetitive, isActive, coach, discipline, meet, placement, dateWhenAchieved, minutes, seconds, hundredths);
+                    CompetitiveSwimmer competitiveSwimmer = new CompetitiveSwimmer(name, address, birthday, memberID, email, isCompetitive, isActive, restance, coach, discipline, meet, placement, dateWhenAchieved, minutes, seconds, hundredths);
                     temp.add(competitiveSwimmer);
                 }
             }

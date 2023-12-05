@@ -14,8 +14,8 @@ public class CompetitiveSwimmer extends Member {
     private Duration bestTime;
 
 
-    public CompetitiveSwimmer(String name, String address, LocalDate birthday, int memberID, String email, boolean isCompetitive, boolean isActive, String coach, String discipline, String meet, String placement, LocalDate dateWhenAchieved, int minutes, int seconds, int hundredths) {
-        super(name, address, birthday, memberID, email, true, isActive);
+    public CompetitiveSwimmer(String name, String address, LocalDate birthday, int memberID, String email, boolean isCompetitive, boolean isActive, int arrears, String coach, String discipline, String meet, String placement, LocalDate dateWhenAchieved, int minutes, int seconds, int hundredths) {
+        super(name, address, birthday, memberID, email, true, isActive, arrears);
         this.coach = coach;
         this.discipline = discipline;
         this.meet = meet;

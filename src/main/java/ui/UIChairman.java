@@ -27,9 +27,8 @@ public class UIChairman {
                     2. Opret medlem
                     3. Rediger medlem
                     4. Slet medlem
-                    5. IDCreation
-                    6. Load medlemmer
-                    7. Save medlemmer
+                    5. Load medlemmer
+                    6. Save medlemmer
                     0. Gå tilbage
                     """);
             try {
@@ -37,15 +36,18 @@ public class UIChairman {
                 scanner.nextLine(); //bugfix
 
                 switch (choice) {
-                    case 1 -> showCompetitiveSwimmers();
+                    case 1 -> showMember();
                     case 2 -> registerMember();
                     case 3 -> editMember();
                     case 4 -> removeMember();
-                    case 5 -> controllerMember.IDCreation();
-                    case 6 -> controllerMember.loadMembers();
-                    case 7 -> controllerMember.loadCompetitiveSwimmers();
-                    case 8 -> controllerMember.saveMembers();
-                    case 9 -> controllerMember.saveCompetitiveSwimmers();
+                    case 5 ->{
+                        controllerMember.loadMembers();
+                        controllerMember.loadCompetitiveSwimmers();
+                    }
+                    case 6 -> {
+                        controllerMember.saveMembers();
+                        controllerMember.saveCompetitiveSwimmers();
+                    }
                     case 0 -> exit = true;
                 }
             } catch (Exception e) {
@@ -67,8 +69,8 @@ public class UIChairman {
             try {
                 birthday = LocalDate.parse(birthdayStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 Random random = new Random();
-                int r = random.nextInt(100);
-                memberID = birthday.getYear() * 10000 + birthday.getMonthValue() * 100 + birthday.getDayOfMonth() + r;
+                int r = random.nextInt(99);
+                memberID = birthday.getMonthValue() * 100 + birthday.getDayOfMonth() + r;
             } catch (DateTimeParseException e) {
                 System.out.println("Ugyldigt datoformat. Prøv igen.");
             }
@@ -77,6 +79,7 @@ public class UIChairman {
         String email = scanner.nextLine();
         boolean membershipType = false;
         boolean isActive = false;
+        int arrears = 0;
 
         while (true) {
             System.out.println("Er medlemmet konkurrencesvømmer?");
@@ -91,9 +94,9 @@ public class UIChairman {
                 int defaultMinutes = 0;
                 int defaultSeconds = 0;
                 int defaultHundredths = 0;
-                controllerMember.registerNewCompetitiveSwimmer(name, address, birthday, memberID, email, membershipType, isActive, defaultCoach, defaultDiscipline,defaultMeet, defaultPlacement, defaultdateWhenAchieved, defaultMinutes, defaultSeconds, defaultHundredths);
+                controllerMember.registerNewCompetitiveSwimmer(name, address, birthday, memberID, email, membershipType, isActive, arrears, defaultCoach, defaultDiscipline,defaultMeet, defaultPlacement, defaultdateWhenAchieved, defaultMinutes, defaultSeconds, defaultHundredths);
             } else if (membershipInput == 2) {
-                controllerMember.registerMember(name, address, birthday, memberID, email, membershipType, isActive);
+                controllerMember.registerMember(name, address, birthday, memberID, email, membershipType, isActive, arrears);
             }
             System.out.println("Er medlemmet aktivt eller passivt?");
             System.out.println("Tryk på 1 for aktivt. Tryk på 2 for passivt.");
@@ -113,7 +116,7 @@ public class UIChairman {
 
             scanner.nextLine();
 
-            controllerMember.registerMember(name, address, birthday, memberID, email, membershipType, isActive);
+            controllerMember.registerMember(name, address, birthday, memberID, email, membershipType, isActive, arrears);
 
         }
     }
@@ -202,7 +205,7 @@ public class UIChairman {
 
     }
 
-    public void showMember() {
+    private void showMember() {
         ArrayList<Member> medlem = controllerMember.getAllMembers();
 
         for (Member member : medlem) {
