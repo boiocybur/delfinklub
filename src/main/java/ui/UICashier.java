@@ -1,6 +1,10 @@
 package ui;
 
 import cashier.ControllerFinance;
+import member.Member;
+
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Scanner;
 
 public class UICashier {
@@ -10,6 +14,8 @@ public class UICashier {
     public UICashier(){
         this.controllerFinance = new ControllerFinance();
     }
+
+
     public void cashierMenu() {
         while (true) {
             System.out.println("""
@@ -27,9 +33,9 @@ public class UICashier {
                 scanner.nextLine(); //bugfix
 
                 switch (choice) {
-                    //case 1 -> controllerFinance.memberContingent();
+                    case 1 -> memberContingent();
                     //case 2 ->
-                    //case 3 -> controllerFinance.totalContingent();
+                    case 3 -> System.out.println(controllerFinance.totalContingent());
                 }
             } catch (Exception e) {
                 System.out.println("Der opstod en fejl: " + e.getMessage());
@@ -37,4 +43,27 @@ public class UICashier {
             }
         }
     }
+
+    private void totalContingent(){
+        System.out.println(controllerFinance.totalContingent());
+    }
+    private void memberContingent() {
+        for (Member member : controllerFinance.getAllMembers()) {
+            LocalDate localDate = LocalDate.now();
+            int age = Period.between(member.getBirthday(), localDate).getYears();
+            boolean isActive = member.isActive();
+            String name = member.getName();
+            int memberID = member.getMemberID();
+            if (age < 17 && isActive) {
+                System.out.println(name + " " + memberID + " " + controllerFinance.getJuniorFee());
+            } else if (age > 17 && isActive) {
+                System.out.println(name + " " + memberID + " " + controllerFinance.getSeniorFee());
+            } else if (age < 59 && isActive) {
+                System.out.println(name + " " + memberID + " " + controllerFinance.getElderFee());
+            } else {
+                System.out.println(name + " " + memberID + " " + controllerFinance.getPassiveFee());
+            }
+        }
+    }
+
 }

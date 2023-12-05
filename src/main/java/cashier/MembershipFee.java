@@ -5,11 +5,14 @@ import member.Member;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 
 public class MembershipFee {
     private Database db;
     private int juniorFee;
     private int seniorFee;
+    private int elderIntermediary;
+    private int elderDiscount;
     private int elderFee;
     private int passiveFee;
 
@@ -17,7 +20,9 @@ public class MembershipFee {
         this.db = new Database();
         this.juniorFee = 1000;
         this.seniorFee = 1600;
-        this.elderFee = 1200;
+        this.elderDiscount = 25;
+        this.elderIntermediary = Math.multiplyExact(seniorFee, elderDiscount);
+        this.elderFee = Math.divideExact(elderIntermediary, 100);
         this.passiveFee = 500;
     }
     public int getSeniorFee() {
@@ -43,34 +48,16 @@ public class MembershipFee {
     public void setPassiveFee(int passiveFee) {
         this.passiveFee = passiveFee;
     }
+    public ArrayList<Member> getAllMembers(){
+        return db.getAllMembers();
+    }
 
+    public int getElderFee() {
+        return elderFee;
+    }
 
-    /*public int memberContingent() {
-        int age = 0;
-        for (Member member : db.getAllMembers()) {
-            LocalDate localDate = LocalDate.now();
-            int age = Period.between(member.getBirthday(), localDate).getYears();
-            return age;
-        }
-
-
-    }*/
-            /*boolean isActive = member.isActive();
-
-            if (age < 17 && isActive) {
-                return juniorFee;
-            } else if (age > 17 && isActive) {
-                return seniorFee;
-            } else if (age < 59 && isActive) {
-                return elderFee;
-
-                //int intermediary = Math.multiplyExact(1600, 25);
-                //return Math.divideExact(intermediary, 100);
-
-            } else {
-                return passiveFee;
-            }
-        } return 0;
+    public void setElderFee(int elderFee) {
+        this.elderFee = 1300;
     }
 
     public int totalContingent() {
@@ -81,15 +68,15 @@ public class MembershipFee {
             boolean isActive = member.isActive();
             if (age < 18 && isActive) {
                 totalAmount += juniorFee;
-            } else if (age > 17 && isActive) {
+            } else if (age >= 18 && age < 60 && isActive) {
                 totalAmount += seniorFee;
-            } else if (age < 59 && isActive) {
+            } else if (age >= 60 && isActive) {
                 totalAmount += elderFee;
             } else {
-                return passiveFee;
+                totalAmount+= passiveFee;
             }
         } return totalAmount;
-    }*/
+    }
 }
 
 
