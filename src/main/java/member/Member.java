@@ -1,8 +1,6 @@
     package member;
 
     import java.time.LocalDate;
-    import java.time.Period;
-    import java.time.format.DateTimeFormatter;
 
     public class Member {
         private String name;
@@ -12,8 +10,9 @@
         private String email;
         private boolean isCompetitiveSwimmer;
         private boolean isActive;
+        private int arrears;
 
-        public Member(String name, String address, LocalDate birthday, int memberID, String email, boolean membershipType, boolean isActive){
+        public Member(String name, String address, LocalDate birthday, int memberID, String email, boolean membershipType, boolean isActive, int arrears){
             this.name = name;
             this.address = address;
             this.birthday = birthday;
@@ -21,6 +20,7 @@
             this.email = email;
             this.isCompetitiveSwimmer = membershipType;
             this.isActive = isActive;
+            this.arrears = arrears;
         }
 
         public boolean isActive() {
@@ -100,16 +100,20 @@
 
         @Override
         public String toString() {
-            //int age = Period.between(this.birthday, LocalDate.now()).getYears();
-            /*return "Member{" +
-                    "name='" + name + '\'' +
-                    ", adresse='" + address + '\'' +
-                    ", birthday='"  + birthday + '\'' +
-                    ", medlemsnummer=" + memberID +
-                    ", email='" + email + '\'' +
-                    ", medlemstype=" + (isCompetitiveSwimmer ? "Competitive" : "Non Competitive") +
-                    ", active=" + (isActive ? "Active" : "Passive") +
-                    '}';*/
-            return name + "," + address + "," + birthday + "," + memberID + "," + email + "," + isCompetitiveSwimmer + "," + isActive + "\n";
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(name);
+            stringBuilder.append(" ");
+            stringBuilder.append(address);
+            stringBuilder.append(" ");
+            stringBuilder.append(birthday);
+            stringBuilder.append(" ");
+            stringBuilder.append(memberID);
+            stringBuilder.append(" ");
+            stringBuilder.append(email);
+            stringBuilder.append(" ");
+            stringBuilder.append(isCompetitiveSwimmer);
+            stringBuilder.append(" ");
+            stringBuilder.append(isActive);
+            return stringBuilder.toString();
         }
     }

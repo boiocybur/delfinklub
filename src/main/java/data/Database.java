@@ -29,14 +29,14 @@ public class Database {
     }
 
 
-    public void registerNewMember(String name, String address, LocalDate birthday, int memberID, String email, boolean membershipType, boolean isActive) {
-        Member member = new Member(name, address, birthday, memberID, email, membershipType, isActive);
+    public void registerNewMember(String name, String address, LocalDate birthday, int memberID, String email, boolean membershipType, boolean isActive, int arrears) {
+        Member member = new Member(name, address, birthday, memberID, email, membershipType, isActive, arrears);
         members.add(member);
 
     }
 
-    public void registerNewCompetitiveSwimmer(String name, String address, LocalDate birthday, int memberID, String email, boolean membershipType, boolean isActive, String coach, String discipline, String meet, String placement, LocalDate dateWhenAchieved, int minutes, int seconds, int milliseconds) {
-        members.add(new CompetitiveSwimmer(name, address, birthday, memberID, email,membershipType, isActive, coach, discipline, meet, placement, dateWhenAchieved, minutes, seconds, milliseconds));
+    public void registerNewCompetitiveSwimmer(String name, String address, LocalDate birthday, int memberID, String email, boolean membershipType, boolean isActive, int restance, String coach, String discipline, String meet, String placement, LocalDate dateWhenAchieved, int minutes, int seconds, int milliseconds) {
+        members.add(new CompetitiveSwimmer(name, address, birthday, memberID, email, membershipType, isActive, restance, coach, discipline, meet, placement, dateWhenAchieved, minutes, seconds, milliseconds));
     }
 
     public void editMember(Member memberToEdit) {
@@ -214,48 +214,5 @@ public class Database {
             }
         });
     }
-
-
-   /* public int memberContingent() {
-        for (Member member : members) {
-            LocalDate localDate = LocalDate.now();
-            int age = Period.between(member.getBirthday(), localDate).getYears();
-            boolean isActive = member.isActive();
-
-            if (age < 17 && isActive) {
-                return 1000;
-            } else if (age > 17 && isActive) {
-                return 1600;
-            } else if (age < 59 && isActive) {
-                int intermediary = Math.multiplyExact(1600, 25);
-                return Math.divideExact(intermediary, 100);
-
-            } else {
-                return 500;
-            }
-        } return 0;
-    }*/
-  /*  public int totalContingent(){
-        for (Member member : members) {
-            LocalDate localDate = LocalDate.now();
-            int age = Period.between(member.getBirthday(), localDate).getYears();
-            boolean isActive = member.isActive();
-            return member.hashCode();
-            if (age < 17 && isActive) {
-                int amountInGroup = member.hashCode();
-                return Math.multiplyExact(amountInGroup, 1000);
-            } else if (age > 17 && isActive) {
-                return 1600;
-            } else if (age < 59 && isActive) {
-                int intermediary = Math.multiplyExact(1600, 25);
-                return Math.divideExact(intermediary, 100);
-
-            } else {
-                return 500;
-            }
-
-        return 0;
-    }*/
-
 }
 

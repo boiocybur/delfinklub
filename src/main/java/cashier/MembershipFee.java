@@ -11,7 +11,6 @@ public class MembershipFee {
     private Database db;
     private int juniorFee;
     private int seniorFee;
-    private int elderIntermediary;
     private int elderDiscount;
     private int elderFee;
     private int passiveFee;
@@ -21,8 +20,7 @@ public class MembershipFee {
         this.juniorFee = 1000;
         this.seniorFee = 1600;
         this.elderDiscount = 25;
-        this.elderIntermediary = Math.multiplyExact(seniorFee, elderDiscount);
-        this.elderFee = Math.divideExact(elderIntermediary, 100);
+        this.elderFee = 0;
         this.passiveFee = 500;
     }
     public int getSeniorFee() {
@@ -56,8 +54,13 @@ public class MembershipFee {
         return elderFee;
     }
 
-    public void setElderFee(int elderFee) {
-        this.elderFee = 1300;
+    public void setElderDiscount(int elderDiscount) {
+        this.elderDiscount = elderDiscount;
+    }
+    public int elderFee(){
+        int elderCalculation1 = Math.multiplyExact(seniorFee, elderDiscount);
+        int elderCalculation2 = Math.divideExact(elderCalculation1, 100);
+        return Math.subtractExact(seniorFee, elderCalculation2);
     }
 
     public int totalContingent() {

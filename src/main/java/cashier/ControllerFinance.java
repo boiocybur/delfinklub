@@ -16,16 +16,35 @@ public class ControllerFinance {
     public ArrayList<Member> getAllMembers(){
         return mf.getAllMembers();
     }
-    public int getJuniorFee(){
-        return mf.getElderFee();
+    public int getElderFee() {
+        return mf.elderFee();
     }
-    public int getSeniorFee(){
+
+    public void setElderDiscount(int elderDiscount) {
+        this.mf.setElderDiscount(elderDiscount);
+    }
+    public int getSeniorFee() {
         return mf.getSeniorFee();
     }
-    public int getElderFee(){
-        return mf.getElderFee();
+
+    public void setSeniorFee(int seniorFee) {
+        this.mf.setSeniorFee(seniorFee);
     }
-    public int getPassiveFee(){
+
+    public int getJuniorFee() {
+        return mf.getJuniorFee();
+    }
+
+    public void setJuniorFee(int juniorFee) {
+        this.mf.setJuniorFee(juniorFee);
+    }
+
+    public int getPassiveFee() {
         return mf.getPassiveFee();
     }
+
+    public void setPassiveFee(int passiveFee) {
+        this.mf.setPassiveFee(passiveFee);
+    }
+
 }
