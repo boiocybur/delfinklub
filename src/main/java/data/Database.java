@@ -18,15 +18,15 @@ public class Database {
     public Database() {
         this.members = new ArrayList<>();
         this.competitiveSwimmers = new ArrayList<>();
-        /*LocalDate birthday = LocalDate.of(1987, 12, 3);
-        members.add(new CompetitiveSwimmer("Grete Bjerre", "Nyborggade 1tv", LocalDate.of(1987, 12, 3), 198712377, "GreteBjerre@gmail.com", true, "Michael", "Crawl", "Meet1", "1st", LocalDate.of(2023, 11, 24), 4, 5, 6));
-        members.add(new CompetitiveSwimmer("Hello World", "Fubarveh 42", LocalDate.of(2010, 10, 26), 2010102626, "hello@gmail.com", true, "Michael", "Butterfly", "Meet2", "2nd", LocalDate.of(2023, 11, 24), 4, 5, 6));
-        members.add(new CompetitiveSwimmer("John Doe", "Street 123", LocalDate.of(1935, 5, 15), 193551534, "john.doe@email.com", true, "Trainer1", "Backstroke", "Meet3", "3rd", LocalDate.of(2023, 11, 25), 3, 55, 78));
-        members.add(new CompetitiveSwimmer("Alice Smith", "Avenue 456", LocalDate.of(2000, 8, 20), 200082021, "alice.smith@email.com", true, "Trainer2", "Breaststroke", "Meet4", "2nd", LocalDate.of(2023, 11, 25), 2, 30, 45));
-        members.add(new CompetitiveSwimmer("Bob Johnson", "Lane 789", LocalDate.of(1998, 3, 10), 199831033, "bob.johnson@email.com", true, "Trainer1", "Butterfly", "Meet3", "5th", LocalDate.of(2023, 11, 25), 5, 10, 22));
-        members.add(new CompetitiveSwimmer("Emma White", "Road 101", LocalDate.of(2002, 6, 5), 20026577, "emma.white@email.com", true, "Trainer2", "Freestyle", "Meet4", "1st", LocalDate.of(2023, 11, 25), 1, 58, 33));
-        members.add(new CompetitiveSwimmer("Charlie Brown", "Square 246", LocalDate.of(1997, 9, 8), 19979899, "charlie.brown@email.com", true, "Trainer1", "Backstroke", "Meet3", "4th", LocalDate.of(2023, 11, 25), 4, 20, 15));
-        members.add(new Member("Frederik Jensen", "Borgergade 13", LocalDate.of(1994, 12, 29), 1994122934, "fubar@gmail.com", false, true));*/
+        LocalDate birthday = LocalDate.of(1987, 12, 3);
+        members.add(new CompetitiveSwimmer("Grete Bjerre", "Nyborggade 1tv", LocalDate.of(1987, 12, 3), 198712377, "GreteBjerre@gmail.com", true, true, "Michael", "Crawl", "Meet1", "1st", LocalDate.of(2023, 11, 24), 4, 5, 6));
+        members.add(new CompetitiveSwimmer("Hello World", "Fubarveh 42", LocalDate.of(2010, 10, 26), 2010102626, "hello@gmail.com", true, true, "Michael", "Butterfly", "Meet2", "2nd", LocalDate.of(2023, 11, 24), 4, 5, 6));
+        members.add(new CompetitiveSwimmer("John Doe", "Street 123", LocalDate.of(1935, 5, 15), 193551534, "john.doe@email.com", true, true, "Trainer1", "Backstroke", "Meet3", "3rd", LocalDate.of(2023, 11, 25), 3, 55, 78));
+        members.add(new CompetitiveSwimmer("Alice Smith", "Avenue 456", LocalDate.of(2000, 8, 20), 200082021, "alice.smith@email.com", true, true, "Trainer2", "Breaststroke", "Meet4", "2nd", LocalDate.of(2023, 11, 25), 2, 30, 45));
+        members.add(new CompetitiveSwimmer("Bob Johnson", "Lane 789", LocalDate.of(1998, 3, 10), 199831033, "bob.johnson@email.com", true, true, "Trainer1", "Butterfly", "Meet3", "5th", LocalDate.of(2023, 11, 25), 5, 10, 22));
+        members.add(new CompetitiveSwimmer("Emma White", "Road 101", LocalDate.of(2002, 6, 5), 20026577, "emma.white@email.com", true, true, "Trainer2", "Freestyle", "Meet4", "1st", LocalDate.of(2023, 11, 25), 1, 58, 33));
+        members.add(new CompetitiveSwimmer("Charlie Brown", "Square 246", LocalDate.of(1997, 9, 8), 19979899, "charlie.brown@email.com", true, true, "Trainer1", "Backstroke", "Meet3", "4th", LocalDate.of(2023, 11, 25), 4, 20, 15));
+        members.add(new Member("Frederik Jensen", "Borgergade 13", LocalDate.of(1994, 12, 29), 1994122934, "fubar@gmail.com", false, true));
     }
 
 
@@ -150,6 +150,48 @@ public class Database {
                 .sorted(new BestTimeComparator())
                 .collect(Collectors.toList());
     }
+    //Metode til at sortere og printe top 5 svømmere 
+    public void printTopFiveSwimmersByDiscipline() {
+        Map<String, List<CompetitiveSwimmer>> topFiveJuniorSwimmers = getTopFiveSwimmersByDiscipline(getJuniorTeam());
+        Map<String, List<CompetitiveSwimmer>> topFiveSeniorSwimmers = getTopFiveSwimmersByDiscipline(getSeniorTeam());
+
+        System.out.println("Top 5 Junior Swimmers by Discipline:");
+        printSwimmersByDiscipline(topFiveJuniorSwimmers);
+
+        System.out.println("\nTop 5 Senior Swimmers by Discipline:");
+        printSwimmersByDiscipline(topFiveSeniorSwimmers);
+    }
+
+    private Map<String, List<CompetitiveSwimmer>> getTopFiveSwimmersByDiscipline(List<CompetitiveSwimmer> swimmerList) {
+        Map<String, List<CompetitiveSwimmer>> topFiveSwimmers = new HashMap<>();
+
+        for (CompetitiveSwimmer swimmer : swimmerList) {
+            String discipline = swimmer.getDiscipline();
+            if (!topFiveSwimmers.containsKey(discipline)) {
+                topFiveSwimmers.put(discipline, new ArrayList<>());
+            }
+
+            List<CompetitiveSwimmer> disciplineSwimmers = topFiveSwimmers.get(discipline);
+            disciplineSwimmers.add(swimmer);
+            disciplineSwimmers.sort(Comparator.comparing(CompetitiveSwimmer::getBestTime));
+            if (disciplineSwimmers.size() > 5) {
+                disciplineSwimmers.remove(5);
+            }
+            topFiveSwimmers.put(discipline, disciplineSwimmers);
+        }
+
+        return topFiveSwimmers;
+    }
+
+    private void printSwimmersByDiscipline(Map<String, List<CompetitiveSwimmer>> swimmerMap) {
+        swimmerMap.forEach((discipline, swimmers) -> {
+            System.out.println("\nDiscipline: " + discipline);
+            for (CompetitiveSwimmer swimmer : swimmers) {
+                System.out.println(swimmer.getName() + " - Time: " + swimmer.getBestTime());
+            }
+        });
+    }
+
 
    /* public int memberContingent() {
         for (Member member : members) {

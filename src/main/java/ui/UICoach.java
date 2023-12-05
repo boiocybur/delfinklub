@@ -42,6 +42,7 @@ public class UICoach {
                     1. Vis konkurrencesvømmere junior division
                     2. Vis konkurrencesvømmere Senior division
                     3. Sorteret liste over hurtigste svømmere
+                    4. Sorteret liste over top 5 svømmere 
                     4. Opdater Konkurrence svømmerners data
                     0. Gå tilbage
                     """);

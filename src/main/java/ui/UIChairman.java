@@ -18,7 +18,42 @@ public class UIChairman {
     public UIChairman() {
         this.controllerMember = new ControllerMember();
     }
+    public void chairmanMenu() {
+        boolean exit = false;
+        while (!exit) {
+            System.out.println("""
+                    Velkommen til menuen for formanden.
+                    1. Vis medlem
+                    2. Opret medlem
+                    3. Rediger medlem
+                    4. Slet medlem
+                    5. IDCreation
+                    6. Load medlemmer
+                    7. Save medlemmer
+                    0. Gå tilbage
+                    """);
+            try {
+                int choice = scanner.nextInt();
+                scanner.nextLine(); //bugfix
 
+                switch (choice) {
+                    case 1 -> showCompetitiveSwimmers();
+                    case 2 -> registerMember();
+                    case 3 -> editMember();
+                    case 4 -> removeMember();
+                    case 5 -> controllerMember.IDCreation();
+                    case 6 -> controllerMember.loadMembers();
+                    case 7 -> controllerMember.loadCompetitiveSwimmers();
+                    case 8 -> controllerMember.saveMembers();
+                    case 9 -> controllerMember.saveCompetitiveSwimmers();
+                    case 0 -> exit = true;
+                }
+            } catch (Exception e) {
+                System.out.println("Der opstod en fejl: " + e.getMessage());
+                scanner.nextLine();
+            }
+        }
+    }
     public void registerMember() {
         System.out.print("Medlemmets navn: ");
         String name = scanner.nextLine();
@@ -185,43 +220,6 @@ public class UIChairman {
         }
     }
 
-
-    public void chairmanMenu() {
-        boolean exit = false;
-        while (!exit) {
-            System.out.println("""
-                    Velkommen til menuen for formanden.
-                    1. Vis medlem
-                    2. Opret medlem
-                    3. Rediger medlem
-                    4. Slet medlem
-                    5. IDCreation
-                    6. Load medlemmer
-                    7. Save medlemmer
-                    0. Gå tilbage
-                    """);
-            try {
-                int choice = scanner.nextInt();
-                scanner.nextLine(); //bugfix
-
-                switch (choice) {
-                    case 1 -> showCompetitiveSwimmers();
-                    case 2 -> registerMember();
-                    case 3 -> editMember();
-                    case 4 -> removeMember();
-                    case 5 -> controllerMember.IDCreation();
-                    case 6 -> controllerMember.loadMembers();
-                    case 7 -> controllerMember.loadCompetitiveSwimmers();
-                    case 8 -> controllerMember.saveMembers();
-                    case 9 -> controllerMember.saveCompetitiveSwimmers();
-                    case 0 -> exit = true;
-                }
-            } catch (Exception e) {
-                System.out.println("Der opstod en fejl: " + e.getMessage());
-                scanner.nextLine();
-            }
-        }
-    }
 
     private void removeMember() {
         System.out.println("Indtast navnet på det medlem, du ønsker at fjerne: ");
