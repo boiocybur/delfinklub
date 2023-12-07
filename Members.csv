@@ -1,31 +1,17 @@
-Grete Bjerre Nyborggade 1tv 1987-12-03 198712377 GreteBjerre@gmail.com true trueMichael,Crawl,Meet1,1st,2023-11-24,4:05:06
-Hello World Fubarveh 42 2010-10-26 2010102626 hello@gmail.com true falseMichael,Butterfly,Meet2,2nd,2023-11-24,4:05:06
-John Doe Street 123 1935-05-15 193551534 john.doe@email.com true trueTrainer1,Rygcrawl,Meet3,3rd,2023-11-25,3:55:78
-Alice Smith Avenue 456 2013-08-20 200082021 alice.smith@email.com true falseTrainer2,BrystsvÃ¸mning,Meet4,2nd,2023-11-25,2:30:45
-Bob Johnson Lane 789 1998-03-10 199831033 bob.johnson@email.com true trueTrainer1,Crawl,Meet3,5th,2023-11-25,5:10:22
-Emma White Road 101 2002-06-05 20026577 emma.white@email.com true falseTrainer2,Butterfly,Meet4,1st,2023-11-25,1:58:33
-Charlie Brown Square 246 1997-09-08 19979899 charlie.brown@email.com true trueTrainer1,Rygcrawl,Meet3,4th,2023-11-25,4:20:15
-Sophie Turner Ocean View 12 1995-04-14 1995041433 sophie.turner@email.com true trueTrainer2,BrystsvÃ¸mning,Meet5,3rd,2023-11-26,4:15:42
-James Smith Mountain Road 56 1993-09-21 1993092156 james.smith@email.com true falseTrainer1,Crawl,Meet6,4th,2023-11-26,4:10:15
-Olivia Davis Valley Lane 78 1996-12-30 1996123034 olivia.davis@email.com true trueTrainer2,Butterfly,Meet5,1st,2023-11-26,3:45:21
-Daniel Brown Meadow Street 45 1990-07-08 1990070845 daniel.brown@email.com true falseTrainer1,BrystsvÃ¸mning,Meet6,2nd,2023-11-26,2:25:30
-Sophia Williams Sunny Avenue 23 1999-02-18 1999021823 sophia.williams@email.com true trueTrainer2,Crawl,Meet5,5th,2023-11-26,2:00:12
-Ethan Johnson Highland Drive 34 1991-11-12 1991111245 ethan.johnson@email.com true falseTrainer1,Butterfly,Meet6,3rd,2023-11-26,4:18:50
-Grace Wilson River Side 67 1998-05-29 1998052967 grace.wilson@email.com true trueTrainer2,Rygcrawl,Meet7,2nd,2023-11-27,4:02:18
-Aiden White Hill Top 89 1994-08-17 1994081789 aiden.white@email.com true falseTrainer1,BrystsvÃ¸mning,Meet8,1st,2023-11-27,3:40:55
-Mia Turner Sunset Boulevard 78 2003-03-08 2003030867 mia.turner@email.com true trueTrainer2,Crawl,Meet7,5th,2023-11-27,4:22:36
-Jackson Brown Forest View 23 1989-10-01 1989100167 jackson.brown@email.com true falseTrainer1,Butterfly,Meet8,4th,2023-11-27,1:55:42
-Ella Davis Green Park 45 2001-07-12 2001071267 ella.davis@email.com true trueTrainer2,Rygcrawl,Meet7,3rd,2023-11-27,2:30:15
-Liam Smith Hill Crest 56 1992-12-20 1992122067 liam.smith@email.com true falseTrainer1,BrystsvÃ¸mning,Meet8,5th,2023-11-27,5:05:20
-Frederik Jensen Borgergade 13 1994-12-29 1994122934 fubar@gmail.com true trueTrainer2,Crawl,Meet9,2nd,2023-11-28,4:15:06
-Olivia Davis Valley Lane 78 1996-12-30 1996123034 olivia.davis@email.com true trueTrainer2,Butterfly,Meet5,1st,2023-11-26,3:45:21
-Daniel Brown Meadow Street 45 1990-07-08 1990070845 daniel.brown@email.com true falseTrainer1,BrystsvÃ¸mning,Meet6,2nd,2023-11-26,2:25:30
-Sophia Williams Sunny Avenue 23 1999-02-18 1999021823 sophia.williams@email.com true trueTrainer2,Crawl,Meet5,5th,2023-11-26,2:00:12
-Ethan Johnson Highland Drive 34 1991-11-12 1991111245 ethan.johnson@email.com true falseTrainer1,Butterfly,Meet6,3rd,2023-11-26,4:18:50
-Grace Wilson River Side 67 1998-05-29 1998052967 grace.wilson@email.com true trueTrainer2,Rygcrawl,Meet7,2nd,2023-11-27,4:02:18
-Aiden White Hill Top 89 1994-08-17 1994081789 aiden.white@email.com true falseTrainer1,BrystsvÃ¸mning,Meet8,1st,2023-11-27,3:40:55
-Mia Turner Sunset Boulevard 78 2013-03-08 2003030867 mia.turner@email.com true trueTrainer2,Crawl,Meet7,5th,2023-11-27,4:22:36
-Jackson Brown Forest View 23 1989-10-01 1989100167 jackson.brown@email.com true falseTrainer1,Butterfly,Meet8,4th,2023-11-27,1:55:42
-Ella Davis Green Park 45 2013-07-12 2001071267 ella.davis@email.com true trueTrainer2,Rygcrawl,Meet7,3rd,2023-11-27,2:30:15
-Liam Smith Hill Crest 56 1992-12-20 1992122067 liam.smith@email.com true falseTrainer1,BrystsvÃ¸mning,Meet8,5th,2023-11-27,5:05:20
-Frederik Jensen Borgergade 13 1994-12-29 1994122934 fubar@gmail.com true trueTrainer2,Crawl,Meet9,2nd,2023-11-28,4:15:06
+Erik Sorensen, Strandvejen 3, 1954-05-12, 195405127,erik.sorensen@email.com, true, true, 0
+Ingrid Nielsen, GrÃÂ¸nningen 5, 1960-07-22, 196007225,ingrid.nielsen@email.com, true, false, 200
+Karl Madsen, Birkelunden 7, 1957-03-16, 195703167,karl.madsen@email.com, false, true, 150
+Birgitte Jensen, Hyacintvej 9, 1959-08-04, 195908049,birgitte.jensen@email.com, true, true, 250
+Lars Kristensen, Tulipanvej 11, 1962-12-01, 196212017,lars.kristensen@email.com, true, false, 300
+Erik SÃÂ¸rensen, Strandvejen 3, 1954-05-12, 195405127,erik.sorensen@email.com, true, true, 0
+Ingrid Nielsen, GrÃÂ¸nningen 5, 1960-07-22, 196007225,ingrid.nielsen@email.com, true, false, 200
+Karl Madsen, Birkelunden 7, 1957-03-16, 195703167,karl.madsen@email.com, true, true, 150
+Birgitte Jensen, Hyacintvej 9, 1959-08-04, 195908049,birgitte.jensen@email.com, true, true, 250
+Lars Kristensen, Tulipanvej 11, 1962-12-01, 196212017,lars.kristensen@email.com, true, false, 300
+mik, hos, 2023-12-12, 121229,mik, true, false, 0
+Erik Sorensen, Strandvejen 3, 1954-05-12, 195405127,erik.sorensen@email.com, true, true, 0Trainer1,Crawl,Meet1,1st,2023-11-24,4:10:00
+Ingrid Nielsen, GrÃÂ¸nningen 5, 1960-07-22, 196007225,ingrid.nielsen@email.com, true, false, 200Trainer2,Butterfly,Meet2,2nd,2023-11-24,4:20:10
+Karl Madsen, Birkelunden 7, 1957-03-16, 195703167,karl.madsen@email.com, true, true, 150Trainer1,Rygcrawl,Meet3,3rd,2023-11-25,3:30:20
+Birgitte Jensen, Hyacintvej 9, 1959-08-04, 195908049,birgitte.jensen@email.com, true, true, 250Trainer2,Bryst,Meet4,4th,2023-11-25,2:40:30
+Lars Kristensen, Tulipanvej 11, 1962-12-01, 196212017,lars.kristensen@email.com, true, false, 300Trainer1,Butterfly,Meet5,5th,2023-11-26,5:50:40
+mik, hos, 2020-12-12, 121269,mik, true, false, 0,TBD,TBD,TBD,TBD,2000-12-29,0:00:00

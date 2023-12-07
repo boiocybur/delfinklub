@@ -82,7 +82,6 @@ public class UICashier {
 
         ArrayList<Member> matchingMembers = new ArrayList<>();
 
-        // Search for superheroes with a partial match in either name or superhero name
         for (Member member : CF.getAllMembers()) {
             if (member.getName().toLowerCase().contains(partialSearchCriteria.toLowerCase())) {
                 matchingMembers.add(member);

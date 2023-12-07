@@ -53,10 +53,6 @@ public class ControllerMember {
         db.loadCompetitiveSwimmers();
     }
 
-//    public int getAge(Member member) {
-//        return db.getAge(member);
-//    }
-
     public int IDCreation() {
         return db.IDCreation();
     }
@@ -72,5 +68,8 @@ public class ControllerMember {
     }
     public void topFive(){
         db.printTopFiveSwimmersByDiscipline();
+    }
+    public void topFiveSenior(){
+        db.printTopFiveSeniorSwimmersByDiscipline();
     }
 }

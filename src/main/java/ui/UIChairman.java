@@ -201,8 +201,10 @@ public class UIChairman {
     }
 
     private void printMemberDetails(Member member) {
-        System.out.println(member);
-
+        System.out.println("Navn: " + member.getName());
+        System.out.println("MedlemsID: " + member.getMemberID());
+        System.out.println("Email: " + member.getEmail());
+        System.out.println("--------------------------");
     }
 
     private void showMember() {
@@ -210,9 +212,7 @@ public class UIChairman {
 
         for (Member member : medlem) {
             printMemberDetails(member);
-
         }
-
     }
     public void showCompetitiveSwimmers() {
         ArrayList<CompetitiveSwimmer> medlem = controllerMember.getAllCompetitiveSwimmers();

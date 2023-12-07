@@ -87,17 +87,9 @@ public class CompetitiveSwimmer extends Member {
 
     @Override
     public String toString() {
-        return super.toString() +
-           /*     "CompetitiveSwimmer{" +
-                "coach='" + coach + '\'' +
-                ", discipline='" + discipline + '\'' +
-                ", meet='" + meet + '\'' +
-                ", placement='" + placement + '\'' +
-                ", dateWhenAchieved='" + formatDateWhenAchieved() + '\'' +
-                ", bestTime='" + formatBestTime() + '\'' +
-                '}';*/
-      coach + "," + discipline + "," + meet + "," + placement + "," + formatDateWhenAchieved() + "," + formatBestTime();
+        return super.toString() + coach + "," + discipline + "," + meet + "," + placement + "," + formatDateWhenAchieved() + "," + formatBestTime();
     }
 }
+
 
 

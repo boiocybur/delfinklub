@@ -86,25 +86,25 @@ public class Filehandler {
         return temp;
     }
 
-    public void saveMembers(ArrayList<Member> members) {
-        try (PrintStream out = new PrintStream(memberFile)) {
-            for (Member member : members) {
-                out.println(member.toString());
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void saveCompetitiveSwimmers(ArrayList<CompetitiveSwimmer> competitiveSwimmers) {
-        try (PrintStream out = new PrintStream(competitiveFile)) {
-            for (CompetitiveSwimmer swimmer : competitiveSwimmers) {
-                out.println(swimmer.toString());
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+//    public void saveMembers1(ArrayList<Member> members) {
+//        try (PrintStream out = new PrintStream(memberFile)) {
+//            for (Member member : members) {
+//                out.println(member.toString());
+//            }
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public void saveCompetitiveSwimmers(ArrayList<CompetitiveSwimmer> competitiveSwimmers) {
+//        try (PrintStream out = new PrintStream(competitiveFile)) {
+//            for (CompetitiveSwimmer swimmer : competitiveSwimmers) {
+//                out.println(swimmer.toString());
+//            }
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public ArrayList<Member> getMemberFiles() {
         return  memberFiles;

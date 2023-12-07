@@ -1,6 +1,7 @@
 package data;
 
 import comparator.BestTimeComparator;
+import comparator.DisciplineComparator;
 import member.CompetitiveSwimmer;
 import member.Member;
 
