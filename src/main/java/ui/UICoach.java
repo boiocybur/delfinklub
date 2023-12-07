@@ -136,7 +136,7 @@ public class UICoach {
 
             swimmerToEdit.setBestTime(newMinutes, newSeconds, newMilliseconds);
 
-            System.out.println("Indtast ny dato for opnåelse (tryk Enter for at beholde den nuværende dato): ");
+            System.out.println("Indtast ny dato for opnåelse i formatet yyyy-MM-dd (tryk Enter for at beholde den nuværende dato): ");
             String newDateInput = scanner.nextLine();
             if (!newDateInput.trim().isEmpty()) {
                 try {

@@ -22,12 +22,13 @@ public class UICashier {
                     Velkommen til menuen for formanden.
                     1. Vis medlemmers kontingenter
                     2. Vise medlemmers restance
-                    3. Ændrer medlemmers restance
+                    3. Ændre medlemmers restance
                     4. Vis årlig total kontingent indbetaling
-                    5. Ændrer junior kontingent
-                    6. Ændrer senior kontingent
-                    7. Ændrer ældre rabat
-                    8. Ændrer passivt kontingent
+                    5. Ændre junior kontingent
+                    6. Ændre senior kontingent
+                    7. Ændre ældre rabat
+                    8. Ændre passivt kontingent
+                    9. Load medlemsdata
                     0. Exit
                     """);
             try {
@@ -78,7 +79,7 @@ public class UICashier {
         }
     }
     private void setMemberArrears() {
-        System.out.println("Skriv navnet på medlemmet du gerne vil ændrer restancen for: ");
+        System.out.println("Skriv navnet på medlemmet du gerne vil ændre restancen for: ");
         String partialSearchCriteria = scanner.nextLine();
 
         ArrayList<Member> matchingMembers = new ArrayList<>();
@@ -120,7 +121,7 @@ public class UICashier {
         }
 
     private void totalContingent(){
-        System.out.println("total årlig kontingent indkost :");
+        System.out.println("total årlig kontingent :");
         System.out.print(CF.totalContingent());
         System.out.println(" kr.");
     }
@@ -143,7 +144,7 @@ public class UICashier {
         }
     }
     private void changeElderFee() {
-        System.out.println("skriv den nye ældre rabat");
+        System.out.println("skriv den nye ældre rabat i procent");
         int newElderDiscount = scanner.nextInt();
         if (newElderDiscount <= 0) {
             System.out.println("ugyldigt tal");
