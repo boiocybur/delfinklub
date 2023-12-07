@@ -6,9 +6,9 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import member.Member;
 import member.CompetitiveSwimmer;
 import member.ControllerMember;
+import member.Member;
 
 public class UICoach {
     Scanner scanner = new Scanner(System.in);
@@ -25,16 +25,6 @@ public class UICoach {
         System.out.println("Aktiv disciplin: " + competitiveSwimmer.getDiscipline());
         System.out.println("---------------------------------------");
     }
-
-    public void loadList(){
-        ArrayList<CompetitiveSwimmer> swimmers = controllerMember.getAllCompetitiveSwimmers();
-
-        for (CompetitiveSwimmer swimmer : swimmers) {
-            printMemberDetails(swimmer);
-        }
-    }
-
-
 
     private void showSwimmers(ArrayList<CompetitiveSwimmer> Team) {
         for (CompetitiveSwimmer swimmer : Team) {
@@ -72,7 +62,7 @@ public class UICoach {
                     case 3 -> sort();
                     case 4 -> editCompetitiveMember();
                     case 5 -> controllerMember.loadCompetitiveSwimmers();
-                    case 6 -> controllerMember.saveMembers();
+                    case 6 -> controllerMember.saveCompetitiveSwimmers();
                     case 7 -> controllerMember.topFiveJunior();
                     case 8 -> controllerMember.topFiveSenior();
                     case 0 -> exit = true;
@@ -156,8 +146,6 @@ public class UICoach {
                     System.out.println("Ugyldigt datoformat. Indtast datoen i formatet yyyy-MM-dd.");
                 }
             }
-
-            controllerMember.editCompetitiveSwimmer(swimmerToEdit);
             controllerMember.saveMembers();
             System.out.println("Konkurrence svømmer opdateret succesfuldt! ");
         } else {
@@ -167,7 +155,7 @@ public class UICoach {
 
     private CompetitiveSwimmer findCompetitiveSwimmerByName(String name) {
         for (CompetitiveSwimmer swimmer : controllerMember.getAllCompetitiveSwimmers()) {
-            if (swimmer.getName().toLowerCase().equals(name)) {
+            if (swimmer.getName().trim().toLowerCase().contains(name)) {
                 return swimmer;
             }
         }

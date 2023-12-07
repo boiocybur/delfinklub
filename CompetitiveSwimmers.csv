@@ -1,5 +1,25 @@
-Erik Sorensen, Strandvejen 3, 1954-05-12, 195405127,erik.sorensen@email.com, true, true, 0Trainer1,Crawl,Meet1,1st,2023-11-24,4:10:00
-Ingrid Nielsen, GrÃÂ¸nningen 5, 1960-07-22, 196007225,ingrid.nielsen@email.com, true, false, 200Trainer2,Butterfly,Meet2,2nd,2023-11-24,4:20:10
-Karl Madsen, Birkelunden 7, 1957-03-16, 195703167,karl.madsen@email.com, true, true, 150Trainer1,Rygcrawl,Meet3,3rd,2023-11-25,3:30:20
-Birgitte Jensen, Hyacintvej 9, 1959-08-04, 195908049,birgitte.jensen@email.com, true, true, 250Trainer2,Bryst,Meet4,4th,2023-11-25,2:40:30
-Lars Kristensen, Tulipanvej 11, 1962-12-01, 196212017,lars.kristensen@email.com, true, false, 300Trainer1,Butterfly,Meet5,5th,2023-11-26,5:50:40
+Emil Andersen, Birkelunden 22, 2006-11-07, 110706,emil.andersen@email.com, true, true, 200, Trainer1,Crawl,Meet2,2nd,2023-11-24,5:10:25
+Clara Nielsen, Hyacintvej 30, 2008-08-21, 82108,clara.nielsen@email.com, true, false, 150, Trainer2,Rygcrawl,Meet3,3rd,2023-11-25,3:35:50
+Oscar Pedersen, Efteraarsvej 47, 2009-04-16, 41609,oscar.pedersen@email.com, true, true, 0, Trainer1,Bryst,Meet4,4th,2023-11-25,2:25:31
+Emma Larsen, Sommervej 59, 2007-06-02, 60207,emma.larsen@email.com, true, true, 250, Trainer1,Butterfly,Meet3,5th,2023-11-25,5:45:10
+Lucas Moeller, Vintervej 73, 2005-12-19, 121905,lucas.moller@email.com, true, false, 50, Trainer2,Crawl,Meet4,1st,2023-11-25,1:30:48
+Sofia Christensen, Foraarsvej 88, 2008-09-03, 90308,sofia.christensen@email.com, true, true, 175, Trainer1,Rygcrawl,Meet3,4th,2023-11-26,4:15:22
+Noah Jensen, Laerkevevej 104, 2006-05-18, 51806,noah.jensen@email.com, true, false, 200, Trainer1,Bryst,Meet5,3rd,2023-11-26,3:50:17
+Alma Rasmussen, Tulipanvej 39, 2009-02-12, 21209,alma.rasmussen@email.com, true, true, 125, Trainer2,Crawl,Meet6,2nd,2023-11-26,2:35:40
+Victor Schmidt, Rosenvaenget 67, 2007-01-29, 12907,victor.schmidt@email.com, true, false, 300, Trainer2,Butterfly,Meet5,1st,2023-11-27,3:50:29
+Anna Kristensen, Efteraarsgade 12, 2006-10-05, 100506,anna.kristensen@email.com, true, false, 120, Trainer2,Butterfly,Meet1,1st,2023-11-24,4:45:30
+Victor Nielsen, Blomsterstien 34, 2005-09-15, 91505,victor.nielsen@email.com, true, true, 180, Trainer1,Crawl,Meet2,2nd,2023-11-24,5:20:16
+Ida Jensen, Solbaervej 56, 2008-07-22, 72208,ida.jensen@email.com, true, false, 130, Trainer2,Rygcrawl,Meet3,3rd,2023-11-25,3:45:57
+Emil Christensen, Havvej 78, 2009-03-10, 31009,emil.christensen@email.com, true, true, 0, Trainer1,Bryst,Meet4,4th,2023-11-25,2:35:42
+Freja Rasmussen, Vaerlunden 91, 2007-05-18, 51807,freja.rasmussen@email.com, true, true, 275, Trainer1,Butterfly,Meet3,5th,2023-11-25,6:00:13
+Magnus Moeller, Hoestvej 103, 2005-11-27, 112705,magnus.moller@email.com, true, false, 75, Trainer2,Crawl,Meet4,1st,2023-11-25,1:40:49
+Clara Larsen, Krokusvej 115, 2008-08-08, 80808,clara.larsen@email.com, true, true, 190, Trainer1,Rygcrawl,Meet3,4th,2023-11-26,4:25:31
+Oscar Pedersen, Liljevej 127, 2006-04-14, 41406,oscar.pedersen@email.com, true, false, 220, Trainer1,Bryst,Meet5,3rd,2023-11-26,4:00:20
+Sofia Andersen, Rosengade 139, 2009-01-30, 13009,sofia.andersen@email.com, true, true, 140, Trainer2,Crawl,Meet6,2nd,2023-11-26,2:45:55
+Lucas Schmidt, Tulipanmarken 151, 2007-02-25, 22507,lucas.schmidt@email.com, true, false, 325, Trainer2,Butterfly,Meet5,1st,2023-11-27,4:00:40
+Mathias Jensen, Solvangsvej 2th, 2005-06-14, 200506142,mathias.jensen@email.com, true, false, 0, Trainer1,Crawl,Meet1,1st,2023-11-24,4:10:00
+Sara Petersen, Boegeparken 4tv, 2006-09-08, 200609083,sara.petersen@email.com, true, true, 100, Trainer2,Butterfly,Meet2,2nd,2023-11-24,4:20:10
+Emil Madsen, Egealleen 6, 2008-03-21, 200803217,emil.madsen@email.com, true, false, 200, Trainer1,Rygcrawl,Meet3,3rd,2023-11-25,3:30:20
+Freja Christensen, Lindelunden 8tv, 2007-07-12, 200707124,freja.christensen@email.com, true, true, 300, Trainer2,Bryst,Meet4,4th,2023-11-25,2:40:30
+Oliver Larsen, Birkevej 10th, 2004-11-05, 200411053,oliver.larsen@email.com, true, false, 400, Trainer1,Crawl,Meet5,5th,2023-11-26,5:50:40
+bo, bo, 2000-10-10, 101042,bo, true, false, 0, TBD,TBD,TBD,TBD,2000-12-29,0:00:00

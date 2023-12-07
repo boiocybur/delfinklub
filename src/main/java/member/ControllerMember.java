@@ -45,13 +45,12 @@ public class ControllerMember {
     public void saveMembers() {
         db.saveMembers();
     }
+    public void saveCompetitiveSwimmers(){
+        db.saveCompetitiveMembers();
+    }
 
     public void loadCompetitiveSwimmers() throws IOException{
         db.loadCompetitiveSwimmers();
-    }
-
-    public int IDCreation() {
-        return db.IDCreation();
     }
 
     public void removeMember(String name) {
@@ -59,9 +58,6 @@ public class ControllerMember {
     }
     public void sortBySpeed(){
         db.printSortedCompetitiveSwimmers();
-    }
-
-    public void editCompetitiveSwimmer(CompetitiveSwimmer swimmerToEdit) {
     }
     public void topFiveJunior(){
         db.printTopFiveJuniorSwimmersByDiscipline();

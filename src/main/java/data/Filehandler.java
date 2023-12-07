@@ -85,12 +85,11 @@ public class Filehandler {
         System.out.println("antal " + temp.size());
         return temp;
     }
-    public void saveMembers(ArrayList<Member> members, ArrayList<CompetitiveSwimmer> swimmer) {
+
+    public void saveMembers(ArrayList<Member> members) {
         try (PrintStream out = new PrintStream(memberFile)) {
             for (Member member : members) {
-                if (member instanceof CompetitiveSwimmer) {
-                    out.println(swimmer.toString());
-                } else {
+                if (!(member instanceof CompetitiveSwimmer)) {
                     out.println(member.toString());
                 }
             }
@@ -99,25 +98,16 @@ public class Filehandler {
         }
     }
 
-//    public void saveMembers1(ArrayList<Member> members) {
-//        try (PrintStream out = new PrintStream(memberFile)) {
-//            for (Member member : members) {
-//                out.println(member.toString());
-//            }
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    public void saveCompetitiveSwimmers(ArrayList<CompetitiveSwimmer> competitiveSwimmers) {
-//        try (PrintStream out = new PrintStream(competitiveFile)) {
-//            for (CompetitiveSwimmer swimmer : competitiveSwimmers) {
-//                out.println(swimmer.toString());
-//            }
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public void saveCompetitiveSwimmers(ArrayList<CompetitiveSwimmer> competitiveSwimmers) {
+        try (PrintStream out = new PrintStream(competitiveFile)) {
+            for (CompetitiveSwimmer swimmer : competitiveSwimmers) {
+                out.println(swimmer.toString());
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public ArrayList<Member> getMemberFiles() {
         return  memberFiles;

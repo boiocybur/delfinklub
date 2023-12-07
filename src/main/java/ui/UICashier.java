@@ -43,6 +43,7 @@ public class UICashier {
                     case 6 -> changeSeniorFee();
                     case 7 -> changeElderFee();
                     case 8 -> changePassiveFee();
+                    case 9 -> loadMember();
                     case 0 -> exit = true;
                 }
             } catch (Exception e) {
@@ -58,15 +59,14 @@ public class UICashier {
             int age = Period.between(member.getBirthday(), localDate).getYears();
             boolean isActive = member.isActive();
             String name = member.getName();
-            int memberID = member.getMemberID();
             if (!isActive) {
-                System.out.println(name + " " + memberID + " " + CF.getPassiveFee());
+                System.out.println(name  + " " + CF.getPassiveFee());
             } else if (age < 18) {
-                System.out.println(name + " " + memberID + " " + CF.getJuniorFee());
+                System.out.println(name + " " + CF.getJuniorFee());
             } else if (age > 18 && age < 60) {
-                System.out.println(name + " " + memberID + " " + CF.getSeniorFee());
+                System.out.println(name + " " + CF.getSeniorFee());
             } else {
-                System.out.println(name + " " + memberID + " " + CF.getElderFee());
+                System.out.println(name + " " + CF.getElderFee());
             }
         }
     }
@@ -114,7 +114,7 @@ public class UICashier {
                     memberArrearToEdit.setArrears(newArrears);
                 }
             } else {
-                System.out.println("Invalid selection. Please choose a superhero from the list.");
+                System.out.println("Dette er ikke gyldigt input. Prøv igen.");
             }
             }
         }

@@ -1,12 +1,12 @@
 package ui;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
-import member.CompetitiveSwimmer;
 import member.Member;
 import member.ControllerMember;
 
@@ -39,11 +39,8 @@ public class UIChairman {
                     case 2 -> registerMember();
                     case 3 -> editMember();
                     case 4 -> removeMember();
-                    case 5 ->{
-                        controllerMember.loadMembers();
-                        controllerMember.loadCompetitiveSwimmers();
-                    }
-                    case 6 -> controllerMember.saveMembers();
+                    case 5 -> loadMembers();
+                    case 6 -> saveMembers();
                     case 0 -> exit = true;
                 }
             } catch (Exception e) {
@@ -210,16 +207,6 @@ public class UIChairman {
             printMemberDetails(member);
         }
     }
-    public void showCompetitiveSwimmers() {
-        ArrayList<CompetitiveSwimmer> medlem = controllerMember.getAllCompetitiveSwimmers();
-
-        for (CompetitiveSwimmer member : medlem) {
-            printMemberDetails(member);
-
-        }
-    }
-
-
     private void removeMember() {
         System.out.println("Indtast navnet på det medlem, du ønsker at fjerne: ");
         String memberToRemove = scanner.nextLine().trim().toLowerCase(); // Convert input to lowercase
@@ -231,6 +218,14 @@ public class UIChairman {
         } else {
             System.out.println("Medlem ikke fundet i databasen.");
         }
+    }
+    private void saveMembers(){
+       controllerMember.saveMembers();
+       controllerMember.saveCompetitiveSwimmers();
+    }
+    private void loadMembers() throws IOException {
+        controllerMember.loadMembers();
+        controllerMember.loadCompetitiveSwimmers();
     }
 }
 

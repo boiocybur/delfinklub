@@ -34,6 +34,9 @@ public class ControllerFinance {
     public int getJuniorFee() {
         return mf.getJuniorFee();
     }
+    public void loadMember(){
+        mf.loadMember();
+    }
 
     public void setJuniorFee(int juniorFee) {
         this.mf.setJuniorFee(juniorFee);
