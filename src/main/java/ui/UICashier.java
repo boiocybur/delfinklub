@@ -112,13 +112,14 @@ public class UICashier {
                 String newArrear = scanner.nextLine();
                 if (!newArrear.isEmpty()) {
                     int newArrears = Integer.parseInt(newArrear);
-                    memberArrearToEdit.setArrears(newArrears);
+                    int arrear = Math.subtractExact(memberArrearToEdit.getArrears(), newArrears);
+                    memberArrearToEdit.setArrears(arrear);
                 }
             } else {
                 System.out.println("Dette er ikke gyldigt input. Prøv igen.");
             }
-            }
         }
+    }
 
     private void totalContingent(){
         System.out.println("total årlig kontingent :");
@@ -132,6 +133,7 @@ public class UICashier {
             System.out.println("ugyldigt tal");
         } else {
             CF.setJuniorFee(newJuniorFee);
+            System.out.println("Nye junior kontingent: " + newJuniorFee + " kr.");
         }
     }
     private void changeSeniorFee() {
@@ -141,6 +143,7 @@ public class UICashier {
             System.out.println("ugyldigt tal");
         } else {
             CF.setSeniorFee(newSeniorFee);
+            System.out.println("Nye senior kontingent: " + newSeniorFee + " kr.");
         }
     }
     private void changeElderFee() {
@@ -150,6 +153,7 @@ public class UICashier {
             System.out.println("ugyldigt tal");
         } else {
             CF.setElderDiscount(newElderDiscount);
+            System.out.println("Nye ældre rabat: " + newElderDiscount + " %");
         }
     }
     private void changePassiveFee() {
@@ -159,6 +163,10 @@ public class UICashier {
             System.out.println("ugyldigt tal");
         } else {
             CF.setPassiveFee(newPassiveFee);
+            System.out.println("Nye passiv kontingent: " + newPassiveFee + " kr.");
         }
+    }
+    private void loadMember(){
+        CF.loadMember();
     }
 }

@@ -3,6 +3,7 @@ package cashier;
 import data.Database;
 import member.Member;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
@@ -79,6 +80,14 @@ public class MembershipFee {
                 totalAmount+= passiveFee;
             }
         } return totalAmount;
+    }
+    public void loadMember(){
+        try {
+            db.loadMembers();
+            db.loadCompetitiveSwimmers();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 
