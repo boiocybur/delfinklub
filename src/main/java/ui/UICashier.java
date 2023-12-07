@@ -59,13 +59,13 @@ public class UICashier {
             String name = member.getName();
             int memberID = member.getMemberID();
             if (!isActive) {
-                System.out.println(name + " " + CF.getPassiveFee());
+                System.out.println(name + " " + memberID + " " + CF.getPassiveFee());
             } else if (age < 18) {
-                System.out.println(name + " " + CF.getJuniorFee());
+                System.out.println(name + " " + memberID + " " + CF.getJuniorFee());
             } else if (age > 18 && age < 60) {
-                System.out.println(name + " " + CF.getSeniorFee());
+                System.out.println(name + " " + memberID + " " + CF.getSeniorFee());
             } else {
-                System.out.println(name + " " + CF.getElderFee());
+                System.out.println(name + " " + memberID + " " + CF.getElderFee());
             }
         }
     }

@@ -78,16 +78,6 @@ public class Database {
     public ArrayList<CompetitiveSwimmer> getAllCompetitiveSwimmers() {
         return competitiveSwimmers;
     }
-    /*public ArrayList<CompetitiveSwimmer> getAllCompetitiveSwimmers() {
-        ArrayList<CompetitiveSwimmer> competitiveSwimmers = new ArrayList<>();
-        for (Member member : members) {
-            if (member instanceof CompetitiveSwimmer) {
-                competitiveSwimmers.add((CompetitiveSwimmer) member);
-            }
-        }
-        return competitiveSwimmers;
-    }*/
-
     public ArrayList<CompetitiveSwimmer> getJuniorTeam() {
         ArrayList<CompetitiveSwimmer> juniorTeam = new ArrayList<>();
         for (Member member : members) {
@@ -214,6 +204,33 @@ public class Database {
                 System.out.println(swimmer.getName() + " - Time: " + swimmer.getBestTime());
             }
         });
+    }
+    public void printTopFiveSeniorSwimmersByDiscipline() {
+
+        List<CompetitiveSwimmer> swimmers = getAllCompetitiveSwimmers();
+        swimmers.sort(Comparator.comparing(CompetitiveSwimmer::getBestTime));
+
+        String[] disciplines = {"Crawl", "Butterfly", "Rygcrawl", "Bryst"};
+        Collections.sort(swimmers, new DisciplineComparator());
+
+        for (String discipline : disciplines) {
+            System.out.println("Discipline: " + discipline);
+            int count = 0;
+            for (CompetitiveSwimmer swimmer : swimmers) {
+                if (swimmer.getDiscipline().equals(discipline)) {
+                    if (swimmer.isSenior()) {
+                        if (count < 5) {
+                            System.out.println(swimmer.getName() + " " + swimmer.getMemberID() + " " + swimmer.getDateWhenAchieved() + " - Time: " + swimmer.formatBestTime());
+                            count++;
+                        } else {
+                            break;
+                        }
+                    }
+                }
+
+            }
+            System.out.println();
+        }
     }
 }
 

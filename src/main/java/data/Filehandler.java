@@ -60,7 +60,7 @@ public class Filehandler {
                     String email = memberData[4].trim();
                     boolean isCompetitive = Boolean.parseBoolean(memberData[5].trim());
                     boolean isActive = Boolean.parseBoolean(memberData[6].trim());
-                    int restance = Integer.parseInt(memberData[7].trim());
+                    int arrears = Integer.parseInt(memberData[7].trim());
                     String coach = memberData[8].trim();
                     String discipline = memberData[9].trim();
                     String meet = memberData[10].trim();
