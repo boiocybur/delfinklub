@@ -16,7 +16,8 @@ public class UICashier {
         this.CF = new ControllerFinance();
     }
     public void cashierMenu() {
-        while (true) {
+        boolean exit = false;
+        while (!exit) {
             System.out.println("""
                     Velkommen til menuen for formanden.
                     1. Vis medlemmers kontingenter
@@ -42,7 +43,7 @@ public class UICashier {
                     case 6 -> changeSeniorFee();
                     case 7 -> changeElderFee();
                     case 8 -> changePassiveFee();
-                    case 0 -> exitProgram();
+                    case 0 -> exit = true;
                 }
             } catch (Exception e) {
                 System.out.println("Der opstod en fejl: " + e.getMessage());
@@ -117,22 +118,6 @@ public class UICashier {
             }
             }
         }
-    private void printMemberDetails(Member member) {
-        System.out.println(member);
-
-    }
-    private ArrayList<Member> memberSearch(String searchCriteria) {
-        ArrayList<Member> searchResult = new ArrayList<>();
-
-        if (searchCriteria != null) {  // Add error handling for null input
-            for (Member member : CF.getAllMembers()) {
-                if (member.getName().toLowerCase().contains(searchCriteria)) {
-                    searchResult.add(member);
-                }
-            }
-        }
-        return searchResult;
-    }
 
     private void totalContingent(){
         System.out.println("total årlig kontingent indkost :");
@@ -174,8 +159,5 @@ public class UICashier {
         } else {
             CF.setPassiveFee(newPassiveFee);
         }
-    }
-    private void exitProgram(){
-        System.exit(0);
     }
 }

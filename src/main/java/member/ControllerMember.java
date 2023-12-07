@@ -42,11 +42,8 @@ public class ControllerMember {
     public void loadMembers() throws IOException {
         db.loadMembers();
     }
-    public void saveMembers(){
+    public void saveMembers() {
         db.saveMembers();
-    }
-    public void saveCompetitiveSwimmers(){
-        db.saveCompetitiveSwimmers();
     }
 
     public void loadCompetitiveSwimmers() throws IOException{
@@ -66,8 +63,8 @@ public class ControllerMember {
 
     public void editCompetitiveSwimmer(CompetitiveSwimmer swimmerToEdit) {
     }
-    public void topFive(){
-        db.printTopFiveSwimmersByDiscipline();
+    public void topFiveJunior(){
+        db.printTopFiveJuniorSwimmersByDiscipline();
     }
     public void topFiveSenior(){
         db.printTopFiveSeniorSwimmersByDiscipline();

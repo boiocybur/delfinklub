@@ -55,19 +55,14 @@ public class Database {
         members.addAll(loadedMembers);
     }
 
-    public void saveMembers() {
-        file.saveMembers(members);
-    }
-
     public void loadCompetitiveSwimmers() throws IOException {
         competitiveSwimmers = file.loadCompetitiveSwimmers();
         // members.addAll(file.getCompetitiveFiles());
         members.addAll(competitiveSwimmers);
     }
 
-    public void saveCompetitiveSwimmers() {
-        ArrayList<CompetitiveSwimmer> competitiveSwimmers = getAllCompetitiveSwimmers();
-        file.saveCompetitiveSwimmers(competitiveSwimmers);
+    public void saveMembers() {
+        file.saveMembers(members, competitiveSwimmers);
     }
 
 
@@ -144,66 +139,31 @@ public class Database {
                 .collect(Collectors.toList());
     }
 
-    //Metode til at sortere og printe top 5 svømmere
-    public Map<String, List<CompetitiveSwimmer>> printTopFiveSwimmersByDiscipline() {
-        List<CompetitiveSwimmer> swimmers = getAllCompetitiveSwimmers();
-        Map<String, List<CompetitiveSwimmer>> swimmersByDiscipline = groupSwimmersByDiscipline(swimmers);
-        Map<String, List<CompetitiveSwimmer>> topFiveSwimmersByDiscipline = getTopFiveSwimmers(swimmersByDiscipline);
+    public void printTopFiveJuniorSwimmersByDiscipline() {
 
-        for (String discipline : topFiveSwimmersByDiscipline.keySet()) {
+        List<CompetitiveSwimmer> swimmers = getAllCompetitiveSwimmers();
+        swimmers.sort(Comparator.comparing(CompetitiveSwimmer::getBestTime));
+
+        String[] disciplines = {"Crawl", "Butterfly", "Rygcrawl", "Bryst"};
+        Collections.sort(swimmers, new DisciplineComparator());
+
+        for (String discipline : disciplines) {
             System.out.println("Discipline: " + discipline);
-            for (CompetitiveSwimmer swimmer : topFiveSwimmersByDiscipline.get(discipline)) {
-                System.out.println(swimmer.getName() + " " + swimmer.getMemberID() + swimmer.getDateWhenAchieved() + " " +  " - Time: " + swimmer.getBestTime());
+            int count = 0;
+            for (CompetitiveSwimmer swimmer : swimmers) {
+                if (swimmer.getDiscipline().equals(discipline)) {
+                    if (swimmer.isJunior()) {
+                        if (count < 5) {
+                            System.out.println(swimmer.getName() + " " + swimmer.getMemberID() + " " + swimmer.getDateWhenAchieved() + " - Time: " + swimmer.formatBestTime());
+                            count++;
+                        } else {
+                            break;
+                        }
+                    }
+                }
             }
             System.out.println();
         }
-        return swimmersByDiscipline;
-    }
-        private static Map<String, List<CompetitiveSwimmer>> groupSwimmersByDiscipline(List<CompetitiveSwimmer> swimmers) {
-            Map<String, List<CompetitiveSwimmer>> swimmersByDiscipline = new HashMap<>();
-            for (CompetitiveSwimmer swimmer : swimmers) {
-                swimmersByDiscipline.computeIfAbsent(swimmer.getDiscipline(), k -> new ArrayList<>()).add(swimmer);
-            }
-            return swimmersByDiscipline;
-        }
-    private static Map<String, List<CompetitiveSwimmer>> getTopFiveSwimmers(Map<String, List<CompetitiveSwimmer>> swimmersByDiscipline) {
-        Map<String, List<CompetitiveSwimmer>> topFiveSwimmersByDiscipline = new HashMap<>();
-        for (String discipline : swimmersByDiscipline.keySet()) {
-            List<CompetitiveSwimmer> sortedSwimmers = swimmersByDiscipline.get(discipline);
-            sortedSwimmers.sort(Comparator.comparing(CompetitiveSwimmer::getBestTime));
-            topFiveSwimmersByDiscipline.put(discipline, sortedSwimmers.subList(0, Math.min(5, sortedSwimmers.size())));
-        }
-        return topFiveSwimmersByDiscipline;
-    }
-
-    private Map<String, List<CompetitiveSwimmer>> getTopFiveSwimmersByDiscipline(List<CompetitiveSwimmer> swimmerList) {
-        Map<String, List<CompetitiveSwimmer>> topFiveSwimmers = new HashMap<>();
-
-        for (CompetitiveSwimmer swimmer : swimmerList) {
-            String discipline = swimmer.getDiscipline();
-            if (!topFiveSwimmers.containsKey(discipline)) {
-                topFiveSwimmers.put(discipline, new ArrayList<>());
-            }
-
-            List<CompetitiveSwimmer> disciplineSwimmers = topFiveSwimmers.get(discipline);
-            disciplineSwimmers.add(swimmer);
-            disciplineSwimmers.sort(Comparator.comparing(CompetitiveSwimmer::getBestTime));
-            if (disciplineSwimmers.size() > 5) {
-                disciplineSwimmers.remove(5);
-            }
-            topFiveSwimmers.put(discipline, disciplineSwimmers);
-        }
-
-        return topFiveSwimmers;
-    }
-
-    private void printSwimmersByDiscipline(Map<String, List<CompetitiveSwimmer>> swimmerMap) {
-        swimmerMap.forEach((discipline, swimmers) -> {
-            System.out.println("\nDiscipline: " + discipline);
-            for (CompetitiveSwimmer swimmer : swimmers) {
-                System.out.println(swimmer.getName() + " - Time: " + swimmer.getBestTime());
-            }
-        });
     }
     public void printTopFiveSeniorSwimmersByDiscipline() {
 
@@ -233,4 +193,3 @@ public class Database {
         }
     }
 }
-

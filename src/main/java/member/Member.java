@@ -100,20 +100,14 @@
 
         @Override
         public String toString() {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(name);
-            stringBuilder.append(" ");
-            stringBuilder.append(address);
-            stringBuilder.append(" ");
-            stringBuilder.append(birthday);
-            stringBuilder.append(" ");
-            stringBuilder.append(memberID);
-            stringBuilder.append(" ");
-            stringBuilder.append(email);
-            stringBuilder.append(" ");
-            stringBuilder.append(isCompetitiveSwimmer);
-            stringBuilder.append(" ");
-            stringBuilder.append(isActive);
-            return stringBuilder.toString();
+            return
+                    name + ", " +
+                    address + ", " +
+                    birthday + ", " +
+                    memberID + "," +
+                    email + ", " +
+                    isCompetitiveSwimmer + ", " +
+                    isActive + ", " +
+                    arrears + ", ";
         }
     }

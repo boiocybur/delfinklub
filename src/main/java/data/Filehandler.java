@@ -76,7 +76,7 @@ public class Filehandler {
                     int hundredths = Integer.parseInt(tid[2].trim());
 
 
-                    CompetitiveSwimmer competitiveSwimmer = new CompetitiveSwimmer(name, address, birthday, memberID, email, isCompetitive, isActive, restance, coach, discipline, meet, placement, dateWhenAchieved, minutes, seconds, hundredths);
+                    CompetitiveSwimmer competitiveSwimmer = new CompetitiveSwimmer(name, address, birthday, memberID, email, isCompetitive, isActive, arrears, coach, discipline, meet, placement, dateWhenAchieved, minutes, seconds, hundredths);
                     temp.add(competitiveSwimmer);
                 }
             }
@@ -84,6 +84,19 @@ public class Filehandler {
         this.competitiveFiles.addAll(temp);
         System.out.println("antal " + temp.size());
         return temp;
+    }
+    public void saveMembers(ArrayList<Member> members, ArrayList<CompetitiveSwimmer> swimmer) {
+        try (PrintStream out = new PrintStream(memberFile)) {
+            for (Member member : members) {
+                if (member instanceof CompetitiveSwimmer) {
+                    out.println(swimmer.toString());
+                } else {
+                    out.println(member.toString());
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 //    public void saveMembers1(ArrayList<Member> members) {

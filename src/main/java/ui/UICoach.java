@@ -17,11 +17,24 @@ public class UICoach {
     public UICoach() {
         this.controllerMember = new ControllerMember();
     }
-
-    private void printMemberDetails(Member member) {
-        System.out.println(member);
-
+    private void printMemberDetails(CompetitiveSwimmer competitiveSwimmer) {
+        System.out.println("Navn: " + competitiveSwimmer.getName());
+        System.out.println("MedlemsID: " + competitiveSwimmer.getMemberID());
+        System.out.println("Email: " + competitiveSwimmer.getEmail());
+        System.out.println("Træner: " + competitiveSwimmer.getCoach());
+        System.out.println("Aktiv disciplin: " + competitiveSwimmer.getDiscipline());
+        System.out.println("---------------------------------------");
     }
+
+    public void loadList(){
+        ArrayList<CompetitiveSwimmer> swimmers = controllerMember.getAllCompetitiveSwimmers();
+
+        for (CompetitiveSwimmer swimmer : swimmers) {
+            printMemberDetails(swimmer);
+        }
+    }
+
+
 
     private void showSwimmers(ArrayList<CompetitiveSwimmer> Team) {
         for (CompetitiveSwimmer swimmer : Team) {

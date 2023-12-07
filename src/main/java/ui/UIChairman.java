@@ -6,7 +6,6 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
-
 import member.CompetitiveSwimmer;
 import member.Member;
 import member.ControllerMember;
@@ -44,10 +43,7 @@ public class UIChairman {
                         controllerMember.loadMembers();
                         controllerMember.loadCompetitiveSwimmers();
                     }
-                    case 6 -> {
-                        controllerMember.saveMembers();
-                        controllerMember.saveCompetitiveSwimmers();
-                    }
+                    case 6 -> controllerMember.saveMembers();
                     case 0 -> exit = true;
                 }
             } catch (Exception e) {
@@ -70,7 +66,7 @@ public class UIChairman {
                 birthday = LocalDate.parse(birthdayStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 Random random = new Random();
                 int r = random.nextInt(99);
-                memberID = birthday.getMonthValue() * 100 + birthday.getDayOfMonth() + r;
+                memberID = birthday.getMonthValue() * 10000 + birthday.getDayOfMonth() * 100 + r;
             } catch (DateTimeParseException e) {
                 System.out.println("Ugyldigt datoformat. Prøv igen.");
             }
