@@ -53,7 +53,7 @@ public class UICoach {
             System.out.println("""
                     Velkommen til menuen for træneren.
                     1. Vis konkurrencesvømmere junior division
-                    2. Vis konkurrencesvømmere Senior division
+                    2. Vis konkurrencesvømmere senior division
                     3. Sorteret liste over hurtigste svømmere
                     4. Opdater Konkurrence svømmer data
                     5. Load medlemmer
