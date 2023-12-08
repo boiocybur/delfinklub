@@ -19,7 +19,11 @@ public class Database {
     public Database() {
         this.members = new ArrayList<>();
         this.competitiveSwimmers = new ArrayList<>();
-        }
+        members.add(new Member("Oscar Pedersen", "Efteraarsvej 47", LocalDate.of(2009, 4, 16), 41609,"oscar.pedersen@email.com", true, true, 0)); // Junior
+        members.add(new Member("Jane Doe", "456 Avenue", LocalDate.of(2009, 1, 1), 1174, "jane@example.com", true, true, 0)); // Senior
+        members.add(new Member("Bob Smith", "789 Road", LocalDate.of(2009, 1, 1), 1184, "bob@example.com", true, true, 0)); // Elder
+        members.add(new Member("Alice Johnson", "321 Lane", LocalDate.of(2009, 1, 1), 1199, "alice@example.com", true, true, 0)); // Passive
+    }
 
 
     public void registerNewMember(String name, String address, LocalDate birthday, int memberID, String email, boolean membershipType, boolean isActive, int arrears) {
