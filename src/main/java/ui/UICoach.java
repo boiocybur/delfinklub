@@ -1,5 +1,6 @@
 package ui;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -14,8 +15,9 @@ public class UICoach {
     Scanner scanner = new Scanner(System.in);
     private ControllerMember controllerMember;
 
-    public UICoach() {
+    public UICoach() throws IOException {
         this.controllerMember = new ControllerMember();
+        controllerMember.loadCompetitiveSwimmers();
     }
     private void printMemberDetails(CompetitiveSwimmer competitiveSwimmer) {
         System.out.println("Navn: " + competitiveSwimmer.getName());

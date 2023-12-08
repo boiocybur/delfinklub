@@ -14,6 +14,8 @@ public class UICashier {
 
     public UICashier(){
         this.CF = new ControllerFinance();
+        CF.loadMember();
+
     }
     public void cashierMenu() {
         boolean exit = false;
@@ -44,7 +46,6 @@ public class UICashier {
                     case 6 -> changeSeniorFee();
                     case 7 -> changeElderFee();
                     case 8 -> changePassiveFee();
-                    case 9 -> loadMember();
                     case 0 -> exit = true;
                 }
             } catch (Exception e) {
@@ -165,8 +166,5 @@ public class UICashier {
             CF.setPassiveFee(newPassiveFee);
             System.out.println("Nye passiv kontingent: " + newPassiveFee + " kr.");
         }
-    }
-    private void loadMember(){
-        CF.loadMember();
     }
 }
