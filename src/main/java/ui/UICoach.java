@@ -31,6 +31,13 @@ public class UICoach {
             printMemberDetails(swimmer);
         }
     }
+    private void showCompetitors(ArrayList<CompetitiveSwimmer> Team){
+        for (CompetitiveSwimmer swimmer : Team){
+            controllerMember.sortBySpeed();
+            printSwimmerDetails(swimmer);
+        }
+    }
+
 
     private void printSwimmerDetails(CompetitiveSwimmer competitiveSwimmer) {
         System.out.println("Navn:  " + competitiveSwimmer.getName());
@@ -66,7 +73,9 @@ public class UICoach {
                 switch (choice) {
                     case 1 -> showSwimmers(controllerMember.juniorTeam());
                     case 2 -> showSwimmers(controllerMember.seniorTeam());
-                    case 3 -> sort();
+                    case 3 -> {
+                        showCompetitors(controllerMember.juniorTeam());
+                    }
                     case 4 -> editCompetitiveMember();
                     case 5 -> controllerMember.loadCompetitiveSwimmers();
                     case 6 -> controllerMember.saveCompetitiveSwimmers();
