@@ -130,6 +130,7 @@ public class Database {
         }
     }
 
+
     private List<CompetitiveSwimmer> getSortedCompetitiveSwimmers() {
         return members.stream()
                 .filter(member -> member instanceof CompetitiveSwimmer)

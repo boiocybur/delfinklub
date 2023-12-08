@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 import member.Member;
@@ -14,9 +15,12 @@ public class UIChairman {
     Scanner scanner = new Scanner(System.in);
     private ControllerMember controllerMember;
 
-    public UIChairman() {
+    public UIChairman() throws IOException {
         this.controllerMember = new ControllerMember();
+        controllerMember.loadMembers();
+        controllerMember.loadCompetitiveSwimmers();
     }
+
     public void chairmanMenu() {
         boolean exit = false;
         while (!exit) {
@@ -26,8 +30,7 @@ public class UIChairman {
                     2. Opret medlem
                     3. Rediger medlem
                     4. Slet medlem
-                    5. Load medlemmer
-                    6. Save medlemmer
+                    5. Save medlemmer
                     0. Gå tilbage
                     """);
             try {
@@ -39,8 +42,7 @@ public class UIChairman {
                     case 2 -> registerMember();
                     case 3 -> editMember();
                     case 4 -> removeMember();
-                    case 5 -> loadMembers();
-                    case 6 -> saveMembers();
+                    case 5 -> saveMembers();
                     case 0 -> exit = true;
                 }
             } catch (Exception e) {
@@ -49,18 +51,38 @@ public class UIChairman {
             }
         }
     }
+
     public void registerMember() {
-        System.out.print("Medlemmets navn: ");
-        String name = scanner.nextLine();
-        System.out.print("Medlemmets adresse: ");
-        String address = scanner.nextLine();
+        String name = "";
+        while (name.isEmpty() || !name.matches("^[A-Za-zæøåÆØÅ\\s]+$")) {
+            System.out.print("Medlemmets navn: ");
+            name = scanner.nextLine().trim();
+
+            if (name.isEmpty()) {
+                System.out.println("Navn må ikke være tom.");
+            } else if (!name.matches("^[A-Za-zæøåÆØÅ\\s]+$")) {
+                System.out.println("Navnet indeholder ugyldige tegn.");
+                name = ""; // Nulstil navn for at fortsætte løkken
+            }
+        }
+        String address = "";
+        while (address.isEmpty() || !address.matches("^[A-Za-zæøåÆØÅ\\s]+$")) {
+            System.out.print("Medlemmets adresse: ");
+            address = scanner.nextLine();
+            if (address.isEmpty()) {
+                System.out.println("Addressen må ikke være tom.");
+            } else if (!address.matches("^[A-Za-zæøåÆØÅ\\s]+$")) {
+                System.out.println("Addressen indeholder ugyldige tegn.");
+                address = ""; // Nulstil addresse for at fortsætte løkken
+            }
+        }
         LocalDate birthday = null;
         int memberID = 0;
         while (birthday == null) {
-            System.out.print("Medlemmets fødselsdato (yyyy-MM-dd): ");
+            System.out.print("Medlemmets fødselsdato (dd-MM-yyyy): ");
             String birthdayStr = scanner.nextLine();
             try {
-                birthday = LocalDate.parse(birthdayStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                birthday = LocalDate.parse(birthdayStr, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
                 Random random = new Random();
                 int r = random.nextInt(99);
                 memberID = birthday.getMonthValue() * 10000 + birthday.getDayOfMonth() * 100 + r;
@@ -68,51 +90,52 @@ public class UIChairman {
                 System.out.println("Ugyldigt datoformat. Prøv igen.");
             }
         }
-        System.out.print("Medlemmets email: ");
-        String email = scanner.nextLine();
+        String email = null;
+        while (email == null) {
+            System.out.print("Medlemmets email: ");
+            email = scanner.nextLine();
+            if (email.isEmpty()) {
+                System.out.println("Email må ikke være tom.");
+            } else if (!email.matches("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}")) {
+                System.out.println("Ugyldig email-adresse. Email skal indeholde '@' og ende med et domæne efter '.'");
+                email = null; // Sæt email til null for at fortsætte loopet
+            }
+        }
+
         boolean membershipType = false;
         boolean isActive = false;
         int arrears = 0;
 
         while (true) {
-            System.out.println("Er medlemmet konkurrencesvømmer?");
-            System.out.println("Tryk på 1 for konkurrencesvømmer, tryk på 2 for ikke konkurrencesvømmer.");
-            int membershipInput = scanner.nextInt();
-            if (membershipInput == 1) {
-                String defaultCoach = "TBD"; // To be determined
-                String defaultDiscipline = "TBD"; // To be determined
-                String defaultMeet = "TBD"; // To be determined
-                String defaultPlacement = "TBD"; // To be determined
-                LocalDate defaultdateWhenAchieved = LocalDate.of(2000,12,29);
-                int defaultMinutes = 0;
-                int defaultSeconds = 0;
-                int defaultHundredths = 0;
-                controllerMember.registerNewCompetitiveSwimmer(name, address, birthday, memberID, email, membershipType, isActive, arrears, defaultCoach, defaultDiscipline,defaultMeet, defaultPlacement, defaultdateWhenAchieved, defaultMinutes, defaultSeconds, defaultHundredths);
-            } else if (membershipInput == 2) {
-                controllerMember.registerMember(name, address, birthday, memberID, email, membershipType, isActive, arrears);
+            System.out.println("Er medlemmet konkurrencesvømmer? (1 for ja, 2 for nej): ");
+            String input = scanner.nextLine();
+            if (input.equals("1")) {
+                membershipType = true;
+                break;
+            } else if (input.equals("2")) {
+                membershipType = false;
+                break;
             }
-            System.out.println("Er medlemmet aktivt eller passivt?");
-            System.out.println("Tryk på 1 for aktivt. Tryk på 2 for passivt.");
-            int activeInput = scanner.nextInt();
-            if (activeInput == 1) {
+            System.out.println("Ugyldig input. Indtast venligst '1' eller '2'.");
+        }
+
+        while (true) {
+            System.out.println("Er medlemmet aktivt eller passivt? (1 for aktivt, 2 for passivt): ");
+            String input = scanner.nextLine();
+            if (input.equals("1")) {
                 isActive = true;
                 break;
-            } else if (activeInput == 2) {
+            } else if (input.equals("2")) {
                 isActive = false;
                 break;
-            } else {
-                System.out.println("Ugyldig input. Indtast venligst '1' eller '2'.");
             }
-
             System.out.println("Ugyldig input. Indtast venligst '1' eller '2'.");
-
-
-            scanner.nextLine();
+        }
+        scanner.nextLine();
 
             controllerMember.registerMember(name, address, birthday, memberID, email, membershipType, isActive, arrears);
 
         }
-    }
     public void editMember() {
         String partialSearchCriteria = scanner.nextLine();
 
@@ -222,10 +245,6 @@ public class UIChairman {
     private void saveMembers(){
        controllerMember.saveMembers();
        controllerMember.saveCompetitiveSwimmers();
-    }
-    private void loadMembers() throws IOException {
-        controllerMember.loadMembers();
-        controllerMember.loadCompetitiveSwimmers();
     }
 }
 

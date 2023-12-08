@@ -32,9 +32,16 @@ public class UICoach {
         }
     }
 
-    private void sort() {
-        controllerMember.sortBySpeed();
-        controllerMember.saveMembers();
+    private void printSwimmerDetails(CompetitiveSwimmer competitiveSwimmer) {
+        System.out.println("Navn:  " + competitiveSwimmer.getName());
+        System.out.println("MedlemsID: " + competitiveSwimmer.getMemberID());
+        System.out.println("Email: " + competitiveSwimmer.getEmail());
+        System.out.println("Træner: " + competitiveSwimmer.getCoach());
+        System.out.println("Aktiv disciplin: " + competitiveSwimmer.getDiscipline());
+        System.out.println("Dato: " + competitiveSwimmer.formatDateWhenAchieved());
+        System.out.println("Bedste tid: " + competitiveSwimmer.formatBestTime());
+        System.out.println("Placering: " + competitiveSwimmer.getPlacement());
+        System.out.println("---------------------------------------");
     }
 
     public void coachMenu() {
@@ -85,14 +92,16 @@ public class UICoach {
             System.out.println("Redigerer konkurrence svømmer: " + swimmerToEdit.getName());
             System.out.println("Indtast ny træner (tryk Enter for at beholde den nuværende træner): ");
             String newCoach = scanner.nextLine();
-            if (!newCoach.trim().isEmpty()) {
+            if (!newCoach.trim().isEmpty() && newCoach.matches("[A-Za-z\\s]+")) {
                 swimmerToEdit.setCoach(newCoach);
             }
 
-            System.out.println("Indtast ny disciplin (tryk Enter for at beholde den nuværende disciplin): ");
+            System.out.println("Indtast ny disciplin (Crawl, Bryst, Rygcrawl, Butterfly): ");
             String newDiscipline = scanner.nextLine();
-            if (!newDiscipline.trim().isEmpty()) {
+            if (newDiscipline.equals("Crawl") || newDiscipline.equals("Bryst") || newDiscipline.equals("Rygcrawl") || newDiscipline.equals("Butterfly")) {
                 swimmerToEdit.setDiscipline(newDiscipline);
+            } else {
+                System.out.println("Ugyldig disciplin. Indtast venligst en af de fire discipliner.");
             }
 
             System.out.println("Indtast nyt stævne (tryk Enter for at beholde det nuværende stævne): ");

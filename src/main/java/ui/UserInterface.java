@@ -1,5 +1,6 @@
 package ui;
 
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -8,6 +9,9 @@ public class UserInterface {
     UIChairman uichairman = new UIChairman();
     UICashier uicashier = new UICashier();
     UICoach uicoach = new UICoach();
+
+    public UserInterface() throws IOException {
+    }
 
 
     public void startProgram() {
